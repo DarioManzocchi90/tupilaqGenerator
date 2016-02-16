@@ -1,0 +1,3721 @@
+import processing.pdf.*;
+
+String nome= "";
+String nomeSegnaposto="Name";
+String cognome="";
+String cognomeSegnaposto="Surname";
+String testoN="";
+String dd="";
+String ddSegnaposto="DD";
+String mm="";
+String mmSegnaposto="MM";
+String yyyy="";
+String yyyySegnaposto="YYYY";
+PFont lubalin= createFont("LubalinGraphStd-Book",26);
+PFont lubalinBold=createFont("LubalinGraphStd-Demi",26);
+PFont hurme= createFont("HurmeGeometricSans2-SemiBold",37);
+PImage logo;
+int selezione=6;
+int confirm=0;
+int  numeroCaso=int(random(1,40));
+color back=color(0,149,168);
+color white=color(255);
+color testo=0;
+int stampa=0;
+int p=0;
+int contatoreNome=0;
+int contatoreCognome=0;
+int sommAnno=0;
+float ritardo=700;
+
+//CREAZIONE DEL TUPILAQ-------------------------------------------------------------------------------------------------------------------------------------------------
+void tupilaq(int x, int y,int col,String n,String c) {
+  noFill();
+  stroke(col);
+  strokeWeight(5);
+  strokeCap(SQUARE);  
+
+//scelta della testa A..........................................................................................................
+  if (n.length()>0){
+    if(n.charAt(p)=='1' || n.charAt(p)=='a' || n.charAt(p)=='A' || n.charAt(p)=='à' || n.charAt(p)=='h' || n.charAt(p)=='H' || n.charAt(p)=='g' || n.charAt(p)=='G' || n.charAt(p)=='p' || n.charAt(p)=='P'){
+  
+//TESTA A...............................................
+ beginShape();
+  vertex(x-95, y+280);
+  vertex(x-85,y+275);
+  vertex(x-117,y+243);
+  vertex(x-75,y+84);
+  vertex(x-53,y+84);
+  vertex(x,y+5);
+  vertex(x+53,y+84);
+  vertex(x+33,y+84);
+  vertex(x,y+35);
+  vertex(x-15,y+57);
+  vertex(x-30,y+35);
+  vertex(x-63,y+84);
+  vertex(x-105,y+238);
+  vertex(x-80,y+262);
+  vertex(x,y+310);
+  vertex(x+80,y+262);
+  vertex(x+105,y+238);
+  vertex(x+63,y+84);
+  vertex(x+40,y+50);
+  vertex(x+29,y+64);
+  vertex(x,y+20);
+  vertex(x-43,y+84);
+  vertex(x-23,y+84);
+  vertex(x,y+50);
+  vertex(x+23,y+84);
+  vertex(x+75,y+84);
+  vertex(x+117,y+243);
+  vertex(x+85,y+275);
+  vertex(x+95, y+280);
+ endShape();
+  
+//RUGHE A..................................................
+beginShape();
+  vertex(x-63,y+90);
+  vertex(x,y+113+controllore(n)/20-6);
+  vertex(x+63,y+90);
+endShape();
+
+beginShape();
+  vertex(x-70,y+110);
+  vertex(x,y+133+controllore(n)/20-6);
+  vertex(x+70,y+110);
+endShape();
+
+beginShape();
+  vertex(x-75,y+132);
+  vertex(x,y+155+controllore(n)/20-6);
+  vertex(x+75,y+132);
+endShape();
+
+fill(back);
+noStroke();
+for (int i=0;i<n.length();i++){
+    if (n.charAt(i)=='a' || n.charAt(i)=='A') { rect(x-53,y+90,20,20); 
+                                                rect(x+53,y+90,-20,20); }
+    if (n.charAt(i)=='e' || n.charAt(i)=='E') { rect(x-10,y+100,20,70); }
+                                                                        
+    if (n.charAt(i)=='i' || n.charAt(i)=='I') { rect(x-43,y+115,20,20); 
+                                                rect(x+43,y+115,-20,20); }
+    if (n.charAt(i)=='o' || n.charAt(i)=='O') { rect(x-53,y+90,20,20); 
+                                                rect(x+53,y+90,-20,20); }
+    if (n.charAt(i)=='u' || n.charAt(i)=='U') { rect(x-37,y+139,20,30); 
+                                                rect(x+37,y+139,-20,30); }
+}
+
+ noFill();
+ stroke(col);
+
+//OCCHI A...................................................
+beginShape();
+  vertex(x-79,y+145);
+  vertex(x-30 -controllore(n)/8,y+165);
+  vertex(x-20,y+200);
+  vertex(x-30,y+215);
+  vertex(x-94,y+210);
+endShape();  
+
+
+
+beginShape();
+  vertex(x+79,y+145);
+  vertex(x+30 +controllore(n)/8,y+165);
+  vertex(x+20,y+200);
+  vertex(x+30,y+215);
+  vertex(x+94,y+210);
+endShape();  
+
+//PUPILLE A.................................................
+fill(col);
+noStroke();
+int cp=controllore(n)/14+10;
+
+if(n.length()==1 || n.length()==5 || n.length()==9 || n.length()==13|| n.length()==17){
+triangle(x+50+cp,y+180,x+50+cp,y+200,x+30+cp,y+200);
+triangle(x-50-cp,y+180,x-50-cp,y+200,x-30-cp,y+200);
+}
+
+if(n.length()==2 || n.length()==6 || n.length()==10 || n.length()==14|| n.length()==18){
+  quad(x+50+cp,y+180,x+50+cp,y+200,x+30+cp,y+200,x+35+cp,y+185);
+  quad(x-50-cp,y+180,x-50-cp,y+200,x-30-cp,y+200,x-35-cp,y+185);
+ 
+}
+
+if(n.length()==3 || n.length()==7|| n.length()==11|| n.length()==15|| n.length()==19){
+  beginShape();
+  vertex(x+50+cp,y+180);
+  vertex(x+50+cp,y+200);
+  vertex(x+30+cp,y+200);
+  vertex(x+30+cp,y+190);
+  vertex(x+40+cp,y+180);
+endShape();  
+
+beginShape();
+  vertex(x-50-cp,y+180);
+  vertex(x-50-cp,y+200);
+  vertex(x-30-cp,y+200);
+  vertex(x-30-cp,y+190);
+  vertex(x-40-cp,y+180);
+endShape(); 
+}
+
+if(n.length()==4 || n.length()==8 || n.length()==12|| n.length()==16|| n.length()==20){
+rect(x+50+controllore(n)/14-10,y+180,20,20);
+rect(x-50-controllore(n)/14+10,y+180,-20,20);
+}
+
+stroke(col);
+strokeWeight(5);
+fill(back);
+
+//NASO A.....................................................
+beginShape();
+  vertex(x-40,y+220);
+  vertex(x-30,y+190);
+  vertex(x,y+175);
+  vertex(x+30,y+190);
+  vertex(x+40,y+220);
+  vertex(x,y+210);
+endShape(CLOSE);
+
+line(x-13,y+212,x-10,y+182);
+line(x+13,y+212,x+10,y+182);
+fill(col);
+triangle(x+30,y+216,x+23,y+205,x+20,y+215);
+triangle(x-30,y+216,x-23,y+205,x-20,y+215);
+
+//BOCCA A.....................................................
+noFill();
+  stroke(col);
+  strokeWeight(5);
+
+beginShape();
+  vertex(x-105,y+238);
+  vertex(x,y+210);
+  vertex(x+105,y+238);
+endShape();
+
+beginShape();
+  vertex(x-80,y+244);
+  vertex(x,y+222);
+  vertex(x+80,y+244);
+  vertex(x,y+295);
+endShape(CLOSE);
+
+//DENTI A...........................................................
+if (n.length()<4 && n.length()>=2){
+triangle(x-35,y+232,x-15,y+227,x-25,y+260);
+}
+
+if (n.length()<6 && n.length()>=4){
+triangle(x-35,y+232,x-15,y+227,x-25,y+260);
+triangle(x+35,y+232,x+15,y+227,x+25,y+260);
+}
+ 
+if (n.length()<8 && n.length()>=6){
+ triangle(x-35,y+232,x-15,y+227,x-25,y+260);
+triangle(x+35,y+232,x+15,y+227,x+25,y+260);
+triangle(x-20,y+282,x-5,y+292,x-13,y+260);
+
+}
+
+if (n.length()<10 && n.length()>=8){
+ triangle(x-35,y+232,x-15,y+227,x-25,y+260);
+triangle(x+35,y+232,x+15,y+227,x+25,y+260);
+triangle(x-20,y+282,x-5,y+292,x-13,y+260);
+triangle(x+20,y+282,x+5,y+292,x+13,y+260);
+ 
+}
+
+if (n.length()<12 && n.length()>=10){
+ triangle(x-35,y+232,x-15,y+227,x-25,y+260);
+triangle(x+35,y+232,x+15,y+227,x+25,y+260);
+triangle(x-20,y+282,x-5,y+292,x-13,y+260);
+triangle(x+20,y+282,x+5,y+292,x+13,y+260);
+line(x-66,y+254,x-33,y+245); 
+
+}
+
+if (n.length()<=14 && n.length()>=12){
+  triangle(x-35,y+232,x-15,y+227,x-25,y+260);
+triangle(x+35,y+232,x+15,y+227,x+25,y+260);
+triangle(x-20,y+282,x-5,y+292,x-13,y+260);
+triangle(x+20,y+282,x+5,y+292,x+13,y+260);
+line(x-66,y+254,x-33,y+245);
+line(x+66,y+254,x+33,y+245);
+}
+
+if (n.length()<=16 && n.length()>=14){
+  triangle(x-35,y+232,x-15,y+227,x-25,y+260);
+triangle(x+35,y+232,x+15,y+227,x+25,y+260);
+triangle(x-20,y+282,x-5,y+292,x-13,y+260);
+triangle(x+20,y+282,x+5,y+292,x+13,y+260);
+line(x-66,y+254,x-33,y+245);
+line(x+66,y+254,x+33,y+245);
+line(x-18,y+244,x+18,y+244); 
+}
+if (n.length()<=18 && n.length()>=16){
+  triangle(x-35,y+232,x-15,y+227,x-25,y+260);
+triangle(x+35,y+232,x+15,y+227,x+25,y+260);
+triangle(x-20,y+282,x-5,y+292,x-13,y+260);
+triangle(x+20,y+282,x+5,y+292,x+13,y+260);
+line(x-66,y+254,x-33,y+245);
+line(x+66,y+254,x+33,y+245);
+line(x-18,y+244,x+18,y+244);
+line(x,y+223,x,y+244);
+
+}
+if (n.length()<=20 && n.length()>=18){
+  triangle(x-35,y+232,x-15,y+227,x-25,y+260);
+triangle(x+35,y+232,x+15,y+227,x+25,y+260);
+triangle(x-20,y+282,x-5,y+292,x-13,y+260);
+triangle(x+20,y+282,x+5,y+292,x+13,y+260);
+line(x-66,y+254,x-33,y+245);
+line(x+66,y+254,x+33,y+245);
+line(x-18,y+244,x+18,y+244);
+line(x,y+223,x,y+244);
+line(x+55,y+237,x+50,y+250);
+
+}
+if (n.length()==20){
+ triangle(x-35,y+232,x-15,y+227,x-25,y+260);
+triangle(x+35,y+232,x+15,y+227,x+25,y+260);
+triangle(x-20,y+282,x-5,y+292,x-13,y+260);
+triangle(x+20,y+282,x+5,y+292,x+13,y+260);
+line(x-66,y+254,x-33,y+245);
+line(x+66,y+254,x+33,y+245);
+line(x-18,y+244,x+18,y+244);
+line(x,y+223,x,y+244);
+line(x+55,y+237,x+50,y+250);
+line(x-55,y+237,x-50,y+250);
+
+}
+//SCAPOLE A.........................................................
+ beginShape();
+  vertex(x-75,y+281);
+  vertex(x,y+325);
+  vertex(x+75,y+281);
+endShape();
+   
+  }
+  }
+
+//scelta della testa B..............................................................................................................
+if (n.length()>0){
+    if(n.charAt(p)=='2' || n.charAt(p)=='j' || n.charAt(p)=='J' || n.charAt(p)=='b' || n.charAt(p)=='B' || n.charAt(p)=='i' || n.charAt(p)=='I' || n.charAt(p)=='ì' || n.charAt(p)=='q' || n.charAt(p)=='Q'){
+  
+//TESTA B..................................................
+  beginShape();
+  vertex(x-95, y+280);
+  vertex(x-85,y+275);
+  vertex(x-105,y+265);
+  vertex(x-122,y+215);
+  vertex(x-75,y+84);
+  vertex(x-53, y+84);
+  vertex(x, y+5);
+  vertex(x+53, y+84);
+  vertex(x+33, y+84);
+  vertex(x, y+35);
+  vertex(x-15, y+57);
+  vertex(x-30, y+35);
+  vertex(x-63, y+84);
+  vertex(x-110, y+215);
+  vertex(x-95, y+260);
+  vertex(x, y+300);
+  vertex(x+95, y+260);
+  vertex(x+110, y+215);
+  vertex(x+63, y+84);
+  vertex(x+40, y+50);
+  vertex(x+29, y+64);
+  vertex(x, y+20);
+  vertex(x-43, y+84);
+  vertex(x-23, y+84);
+  vertex(x, y+50);
+  vertex(x+23, y+84);
+  vertex(x+75,y+84);
+  vertex(x+122,y+215);
+  vertex(x+105,y+265);
+  vertex(x+85,y+275);
+  vertex(x+95, y+280);
+  endShape();
+
+//RUGHE B.................................................
+  beginShape();
+  vertex(x-63, y+90);
+  vertex(x, y+145-controllore(n)/10);
+  vertex(x+63, y+90);
+  endShape();
+
+  beginShape();
+  vertex(x-110, y+215);
+  vertex(x-70, y+195);
+  vertex(x-5, y+190);
+  vertex(x-5, y+165-controllore(n)/10);
+  vertex(x-70, y+105);
+  endShape();
+
+  beginShape();
+  vertex(x+110, y+215);
+  vertex(x+70, y+195);
+  vertex(x+5, y+190);
+  vertex(x+5, y+165-controllore(n)/10);
+  vertex(x+70, y+105);
+  endShape();
+  
+  for (int i=0;i<n.length();i++){
+    if (n.charAt(i)=='a' || n.charAt(i)=='A') {   line(x-20,y+180,x-98,y+186);
+                                                  line(x+20,y+180,x+98,y+186);}
+    if (n.charAt(i)=='e' || n.charAt(i)=='E') {  beginShape();
+                                                      vertex(x-63, y+90);
+                                                      vertex(x, y+125-controllore(n)/10);
+                                                      vertex(x+63, y+90);
+                                                 endShape();}
+                                                                        
+    if (n.charAt(i)=='i' || n.charAt(i)=='I') { line(x, y+125-controllore(n)/10,x, y+145-controllore(n)/10); }
+    if (n.charAt(i)=='o' || n.charAt(i)=='O') { line(x-20, y+170-controllore(n)/10, x-75,y+115+controllore(n)/70); 
+                                                line(x+20, y+170-controllore(n)/10, x+75,y+115+controllore(n)/70);}
+    if (n.charAt(i)=='u' || n.charAt(i)=='U') { line(x+80,y+138,x+70,y+145); 
+                                                line(x-80,y+138,x-70,y+145);}
+  }
+
+ //OCCHI B.........................................
+  beginShape();
+  vertex(x-65, y+125);
+  vertex(x-85, y+185);
+  vertex(x-20, y+180);
+  vertex(x-20, y+170-controllore(n)/10);
+  endShape(CLOSE);  
+
+  beginShape();
+  vertex(x+65, y+125);
+  vertex(x+85, y+185);
+  vertex(x+20, y+180);
+  vertex(x+20, y+170-controllore(n)/10);
+  endShape(CLOSE);  
+
+
+//PUPILLE B.......................................
+  
+  fill(col);
+  int cp=controllore(n)/18;
+  
+if(n.length()==1 || n.length()==5 || n.length()==9 || n.length()==13 || n.length()==17){
+triangle(x+55+cp,y+155,x+55+cp,y+170,x+40+cp,y+170);
+triangle(x-55-cp,y+155,x-55-cp,y+170,x-40-cp,y+170);
+}
+
+if(n.length()==2 || n.length()==6 || n.length()==10 || n.length()==14 || n.length()==18){
+  quad(x+55+cp,y+155,x+55+cp,y+170,x+40+cp,y+170,x+48+cp,y+160);
+quad(x-55-cp,y+155,x-55-cp,y+170,x-40-cp,y+170,x-48-cp,y+160);
+ 
+}
+
+if(n.length()==3 || n.length()==7|| n.length()==11|| n.length()==15 || n.length()==19){
+  beginShape();
+  vertex(x+55+cp,y+155);
+  vertex(x+55+cp,y+170);
+  vertex(x+40+cp,y+170);
+  vertex(x+40+cp,y+165);
+  vertex(x+50+cp,y+155);
+endShape();  
+
+beginShape();
+  vertex(x-55-cp,y+155);
+  vertex(x-55-cp,y+170);
+  vertex(x-40-cp,y+170);
+  vertex(x-40-cp,y+165);
+  vertex(x-50-cp,y+155);
+endShape(); 
+}
+
+if(n.length()==4 || n.length()==8 || n.length()==12|| n.length()==16 || n.length()==20){
+rect(x+55+cp,y+155,-15,15);
+rect(x-55-cp,y+155,15,15);
+
+}
+  noFill();
+  stroke(col);
+  strokeWeight(5);
+
+//BOCCA B..........................................
+  beginShape();
+  vertex(x-85, y+225);
+  vertex(x-75, y+250);
+  vertex(x, y+275);
+  vertex(x+75, y+250);
+  vertex(x+85, y+225);
+  vertex(x+20, y+215);
+  vertex(x-20, y+215);
+  endShape(CLOSE); 
+
+//DENTI B......................................................
+ if (n.length()<4 && n.length()>=2){
+   beginShape();
+     vertex(x-35, y+219);
+     vertex(x-32, y+238);
+     vertex(x, y+238);
+     vertex(x, y+217);
+  endShape();
+ }
+    
+if (n.length()<6 && n.length()>=4) {
+    beginShape();
+     vertex(x-35, y+219);
+     vertex(x-32, y+238);
+     vertex(x, y+238);
+     vertex(x, y+217);
+  endShape(); 
+  
+  beginShape();
+     vertex(x+35, y+219);
+     vertex(x+32, y+238);
+     vertex(x, y+238);
+     vertex(x, y+217);
+  endShape(); 
+ }
+
+if (n.length()<8 && n.length()>=6) {
+    beginShape();
+     vertex(x-35, y+219);
+     vertex(x-32, y+238);
+     vertex(x, y+238);
+     vertex(x, y+217);
+  endShape(); 
+  
+  beginShape();
+     vertex(x+35, y+219);
+     vertex(x+32, y+238);
+     vertex(x, y+238);
+     vertex(x, y+217);
+  endShape(); 
+  
+  beginShape();
+     vertex(x-10, y+271);
+     vertex(x-20, y+250);
+     vertex(x-30, y+265);
+    endShape(); 
+}
+
+if (n.length()<10 && n.length()>=8){
+    beginShape();
+     vertex(x-35, y+219);
+     vertex(x-32, y+238);
+     vertex(x, y+238);
+     vertex(x, y+217);
+  endShape(); 
+  
+  beginShape();
+     vertex(x+35, y+219);
+     vertex(x+32, y+238);
+     vertex(x, y+238);
+     vertex(x, y+217);
+  endShape(); 
+  
+  beginShape();
+     vertex(x-10, y+271);
+     vertex(x-20, y+250);
+     vertex(x-30, y+265);
+    endShape(); 
+   
+    beginShape();
+     vertex(x+10, y+271);
+     vertex(x+20, y+250);
+     vertex(x+30, y+265);
+    endShape();
+}
+  
+if (n.length()<12 && n.length()>=10){
+    beginShape();
+     vertex(x-35, y+219);
+     vertex(x-32, y+238);
+     vertex(x, y+238);
+     vertex(x, y+217);
+  endShape(); 
+  
+  beginShape();
+     vertex(x+35, y+219);
+     vertex(x+32, y+238);
+     vertex(x, y+238);
+     vertex(x, y+217);
+  endShape(); 
+  
+  beginShape();
+     vertex(x-10, y+271);
+     vertex(x-20, y+250);
+     vertex(x-30, y+265);
+    endShape(); 
+   
+    beginShape();
+     vertex(x+10, y+271);
+     vertex(x+20, y+250);
+     vertex(x+30, y+265);
+    endShape();
+  
+  beginShape();
+     vertex(x-80, y+243);
+     vertex(x-55, y+240);
+     vertex(x-60,y+220);
+  endShape(); 
+}
+  
+if (n.length()<14 && n.length()>=12){
+       beginShape();
+     vertex(x-35, y+219);
+     vertex(x-32, y+238);
+     vertex(x, y+238);
+     vertex(x, y+217);
+  endShape(); 
+  
+  beginShape();
+     vertex(x+35, y+219);
+     vertex(x+32, y+238);
+     vertex(x, y+238);
+     vertex(x, y+217);
+  endShape(); 
+  
+  beginShape();
+     vertex(x-10, y+271);
+     vertex(x-20, y+250);
+     vertex(x-30, y+265);
+    endShape(); 
+   
+    beginShape();
+     vertex(x+10, y+271);
+     vertex(x+20, y+250);
+     vertex(x+30, y+265);
+    endShape();
+  
+  beginShape();
+     vertex(x-80, y+243);
+     vertex(x-55, y+240);
+     vertex(x-60,y+220);
+  endShape(); 
+  
+
+   beginShape();
+     vertex(x+80, y+243);
+     vertex(x+55, y+240);
+     vertex(x+60,y+220);
+  endShape(); 
+}
+  
+if (n.length()<=16 && n.length()>=14){  
+        beginShape();
+     vertex(x-35, y+219);
+     vertex(x-32, y+238);
+     vertex(x, y+238);
+     vertex(x, y+217);
+  endShape(); 
+  
+  beginShape();
+     vertex(x+35, y+219);
+     vertex(x+32, y+238);
+     vertex(x, y+238);
+     vertex(x, y+217);
+  endShape(); 
+  
+  beginShape();
+     vertex(x-10, y+271);
+     vertex(x-20, y+250);
+     vertex(x-30, y+265);
+    endShape(); 
+   
+    beginShape();
+     vertex(x+10, y+271);
+     vertex(x+20, y+250);
+     vertex(x+30, y+265);
+    endShape();
+  
+  beginShape();
+     vertex(x-80, y+243);
+     vertex(x-55, y+240);
+     vertex(x-60,y+220);
+  endShape(); 
+  
+
+   beginShape();
+     vertex(x+80, y+243);
+     vertex(x+55, y+240);
+     vertex(x+60,y+220);
+  endShape(); 
+   
+  beginShape();
+     vertex(x+35, y+219);
+     vertex(x+32, y+238);
+     vertex(x+55, y+240);
+     vertex(x+60,y+220);
+  endShape();
+}
+   
+if (n.length()<18 && n.length()>=16){
+        beginShape();
+     vertex(x-35, y+219);
+     vertex(x-32, y+238);
+     vertex(x, y+238);
+     vertex(x, y+217);
+  endShape(); 
+  
+  beginShape();
+     vertex(x+35, y+219);
+     vertex(x+32, y+238);
+     vertex(x, y+238);
+     vertex(x, y+217);
+  endShape(); 
+  
+  beginShape();
+     vertex(x-10, y+271);
+     vertex(x-20, y+250);
+     vertex(x-30, y+265);
+    endShape(); 
+   
+    beginShape();
+     vertex(x+10, y+271);
+     vertex(x+20, y+250);
+     vertex(x+30, y+265);
+    endShape();
+  
+  beginShape();
+     vertex(x-80, y+243);
+     vertex(x-55, y+240);
+     vertex(x-60,y+220);
+  endShape(); 
+  
+ beginShape();
+     vertex(x-35, y+219);
+     vertex(x-32, y+238);
+     vertex(x-55, y+240);
+     vertex(x-60,y+220);
+  endShape(); 
+  
+  beginShape();
+     vertex(x+35, y+219);
+     vertex(x+32, y+238);
+     vertex(x+55, y+240);
+     vertex(x+60,y+220);
+  endShape();
+  
+    beginShape();
+     vertex(x+80, y+243);
+     vertex(x+55, y+240);
+     vertex(x+60,y+220);
+  endShape(); 
+  
+}
+  
+if (n.length()<20 && n.length()>=18){
+    beginShape();
+     vertex(x-35, y+219);
+     vertex(x-32, y+238);
+     vertex(x, y+238);
+     vertex(x, y+217);
+  endShape(); 
+  
+  beginShape();
+     vertex(x+35, y+219);
+     vertex(x+32, y+238);
+     vertex(x, y+238);
+     vertex(x, y+217);
+  endShape(); 
+  
+  beginShape();
+     vertex(x-10, y+271);
+     vertex(x-20, y+250);
+     vertex(x-30, y+265);
+    endShape(); 
+   
+    beginShape();
+     vertex(x+10, y+271);
+     vertex(x+20, y+250);
+     vertex(x+30, y+265);
+    endShape();
+  
+  beginShape();
+     vertex(x-80, y+243);
+     vertex(x-55, y+240);
+     vertex(x-60,y+220);
+  endShape(); 
+  
+ beginShape();
+     vertex(x-35, y+219);
+     vertex(x-32, y+238);
+     vertex(x-55, y+240);
+     vertex(x-60,y+220);
+  endShape(); 
+  
+  beginShape();
+     vertex(x+35, y+219);
+     vertex(x+32, y+238);
+     vertex(x+55, y+240);
+     vertex(x+60,y+220);
+  endShape();
+  
+    beginShape();
+     vertex(x+80, y+243);
+     vertex(x+55, y+240);
+     vertex(x+60,y+220);
+  endShape();  
+ 
+   
+   line(x-25,y+255,x-68,y+242);
+   line(x+25,y+255,x+68,y+242);
+}
+  
+if (n.length()==20 ){
+      beginShape();
+     vertex(x-35, y+219);
+     vertex(x-32, y+238);
+     vertex(x, y+238);
+     vertex(x, y+217);
+  endShape(); 
+  
+  beginShape();
+     vertex(x+35, y+219);
+     vertex(x+32, y+238);
+     vertex(x, y+238);
+     vertex(x, y+217);
+  endShape(); 
+  
+  beginShape();
+     vertex(x-10, y+271);
+     vertex(x-20, y+250);
+     vertex(x-30, y+265);
+    endShape(); 
+   
+    beginShape();
+     vertex(x+10, y+271);
+     vertex(x+20, y+250);
+     vertex(x+30, y+265);
+    endShape();
+  
+  beginShape();
+     vertex(x-80, y+243);
+     vertex(x-55, y+240);
+     vertex(x-60,y+220);
+  endShape(); 
+  
+ beginShape();
+     vertex(x-35, y+219);
+     vertex(x-32, y+238);
+     vertex(x-55, y+240);
+     vertex(x-60,y+220);
+  endShape(); 
+  
+  beginShape();
+     vertex(x+35, y+219);
+     vertex(x+32, y+238);
+     vertex(x+55, y+240);
+     vertex(x+60,y+220);
+  endShape();
+  
+    beginShape();
+     vertex(x+80, y+243);
+     vertex(x+55, y+240);
+     vertex(x+60,y+220);
+  endShape();  
+ 
+   
+   line(x-25,y+255,x-68,y+242);
+   line(x+25,y+255,x+68,y+242);
+   
+   line(x-15,y+260,x+15,y+260);
+}
+//NASO  B............................................
+  fill(col);
+  triangle(x-20, y+215, x, y+215, x-10, y+200);
+  triangle(x+20, y+215, x, y+215, x+10, y+200);
+
+  noFill();
+  stroke(col);
+  strokeWeight(5);
+
+
+ //SCAPOLE B............................................
+  beginShape();
+  vertex(x-75, y+281);
+  vertex(x, y+320);
+  vertex(x+75, y+281);
+  endShape();
+
+    }}
+
+
+
+
+//scelta della testa C...............................................................................................................................................................................................................................................
+if (n.length()>0){
+    if(n.charAt(p)=='3' || n.charAt(p)=='k' || n.charAt(p)=='K' || n.charAt(p)=='c' || n.charAt(p)=='C' || n.charAt(p)=='ç' || n.charAt(p)=='l' || n.charAt(p)=='L' || n.charAt(p)=='r' || n.charAt(p)=='R'){
+
+  //TESTA C..................................................
+  beginShape();
+  vertex(x-95, y+280);
+  vertex(x-85,y+275);
+  vertex(x-102,y+250);
+  vertex(x-102,y+185);
+  vertex(x-83,y+160);
+  vertex(x-75,y+84);
+  vertex(x-53, y+84);
+  vertex(x, y+5);
+  vertex(x+53, y+84);
+  vertex(x+33, y+84);
+  vertex(x, y+35);
+  vertex(x-15, y+57);
+  vertex(x-30, y+35);
+  vertex(x-63, y+84);
+
+  vertex(x-70, y+160);
+  vertex(x-90, y+190);
+  vertex(x-90, y+250);
+  vertex(x-80, y+265);
+  vertex(x+80, y+265);
+  vertex(x+90, y+250);
+  vertex(x+90, y+190);
+  vertex(x+70, y+160);
+
+  vertex(x+63, y+84);
+  vertex(x+40, y+50);
+  vertex(x+29, y+64);
+  vertex(x, y+20);
+  vertex(x-43, y+84);
+  vertex(x-23, y+84);
+  vertex(x, y+50);
+  vertex(x+23, y+84);
+  vertex(x+75,y+84);
+  vertex(x+83,y+160);
+  vertex(x+102,y+185);
+  vertex(x+102,y+250);
+  vertex(x+85,y+275);
+  vertex(x+95, y+280);
+  endShape();
+
+
+  //RUGHE C.................................................
+ 
+  
+ 
+  for (int i=0;i<n.length();i++){
+    if (n.charAt(i)=='a' || n.charAt(i)=='A') {    beginShape();
+  vertex(x+63, y+90);
+  vertex(x, y+100+controllore(n)/30);
+  vertex(x-63, y+90);
+  endShape();}
+   
+    if (n.charAt(i)=='e' || n.charAt(i)=='E') {  beginShape();
+  vertex(x+63, y+102);
+  vertex(x, y+112+controllore(n)/30);
+  vertex(x-63, y+102);
+  endShape();}
+                                                                        
+    if (n.charAt(i)=='i' || n.charAt(i)=='I') { line(x+55, y+155, x+70, y+160);
+  line(x-55, y+155, x-70, y+160);}
+  
+    if (n.charAt(i)=='o' || n.charAt(i)=='O') {
+  line(x+55, y+170, x+90, y+200);
+  line(x-55, y+170, x-90, y+200);
+  }
+    if (n.charAt(i)=='u' || n.charAt(i)=='U') { 
+   line(x+53, y+140, x+70, y+150);
+   line(x-53, y+140, x-70, y+150);}
+  }
+  
+  
+
+
+  //OCCHI C.........................................
+  beginShape();
+  vertex(x-50, y+115);
+  vertex(x-55, y+170);
+  vertex(x-5, y+170);
+  vertex(x-5, y+123+controllore(n)/30);
+  endShape(CLOSE);  
+
+  beginShape();
+  vertex(x+50, y+115);
+  vertex(x+55, y+170);
+  vertex(x+5, y+170);
+  vertex(x+5, y+123+controllore(n)/30);
+  endShape(CLOSE);  
+
+
+
+
+  //PUPILLE C.......................................
+  fill(col);
+  noStroke();
+  
+  int cp=controllore(n)/18;
+
+
+if(n.length()==1 || n.length()==5 || n.length()==9 || n.length()==13 || n.length()==17){
+triangle(x+35+cp,y+145,x+35+cp,y+165,x+15+cp,y+165);
+triangle(x-35-cp,y+145,x-35-cp,y+165,x-15-cp,y+165);
+}
+
+if(n.length()==2 || n.length()==6 || n.length()==10 || n.length()==14 || n.length()==18){
+  quad(x+35+cp,y+145,x+35+cp,y+165,x+15+cp,y+165,x+20+cp,y+150);
+quad(x-35-cp,y+145,x-35-cp,y+165,x-15-cp,y+165,x-20-cp,y+150);
+ 
+}
+
+if(n.length()==3 || n.length()==7|| n.length()==11 || n.length()==15 || n.length()==19){
+  beginShape();
+  vertex(x+35+cp,y+145);
+  vertex(x+35+cp,y+165);
+  vertex(x+15+cp,y+165);
+  vertex(x+15+cp,y+155);
+  vertex(x+25+cp,y+145);
+endShape();  
+
+beginShape();
+  vertex(x-35-cp,y+145);
+  vertex(x-35-cp,y+165);
+  vertex(x-15-cp,y+165);
+  vertex(x-15-cp,y+155);
+  vertex(x-25-cp,y+145);
+endShape(); 
+}
+
+if(n.length()==4 || n.length()==8 || n.length()==12 || n.length()==16|| n.length()==20){
+rect(x+35+cp,y+145,-  20,20);
+rect(x-35-cp,y+145,20,20);
+}
+
+
+  
+  
+  
+  
+  noFill();
+  stroke(col);
+  strokeWeight(5);
+
+
+
+  //BOCCA C..........................................
+  beginShape();
+  vertex(x-80, y+210);
+  vertex(x-80, y+245);
+  vertex(x-72, y+255);
+  vertex(x+72, y+255);
+  vertex(x+80, y+245);
+  vertex(x+80, y+210);
+
+  endShape(CLOSE); 
+
+  //DENTI C................................................
+ 
+  
+   if (n.length()<4 && n.length()>=2){
+     rect(x-55,y+255,30,-14);
+   }
+   
+   if (n.length()<6 && n.length()>=4){
+     rect(x-55,y+210,30,18);
+  
+ rect(x-55,y+255,30,-14);
+   
+   }
+   
+   if (n.length()<8 && n.length()>=6){
+      rect(x-55,y+210,30,18);
+  
+ rect(x-55,y+255,30,-14);
+   rect(x+25,y+255,-25,-16);
+   }
+   
+   if (n.length()<10 && n.length()>=8){
+       rect(x-55,y+210,30,18);
+  rect(x+25,y+210,-25,20);
+ rect(x-55,y+255,30,-14);
+   rect(x+25,y+255,-25,-16);
+   }
+   
+   if (n.length()<12 && n.length()>=10){
+      rect(x-55,y+210,30,18);
+  rect(x+25,y+210,-25,20);
+  rect(x+55,y+210,-30,18);
+ rect(x-55,y+255,30,-14);
+   rect(x+25,y+255,-25,-16);
+   
+   }
+   
+   if (n.length()<14 && n.length()>=12){
+     rect(x-55,y+210,30,18);
+  rect(x+25,y+210,-25,20);
+  rect(x+55,y+210,-30,18);
+ 
+  
+  rect(x-55,y+255,30,-14);
+  
+  rect(x+25,y+255,-25,-16);
+  rect(x+55,y+255,-30,-14);
+   
+   }
+   
+   if (n.length()<16 && n.length()>=14){
+       rect(x-55,y+210,30,18);
+  rect(x+25,y+210,-25,20);
+  rect(x+55,y+210,-30,18);
+  rect(x+80,y+210,-25,16);
+  
+  rect(x-55,y+255,30,-14);
+  
+  rect(x+25,y+255,-25,-16);
+  rect(x+55,y+255,-30,-14);
+   }
+   
+   if (n.length()<18 && n.length()>=16){
+     
+  rect(x-55,y+210,30,18);
+  rect(x+25,y+210,-25,20);
+  rect(x+55,y+210,-30,18);
+  rect(x+80,y+210,-25,16);
+  
+  rect(x-55,y+255,30,-14);
+  rect(x-25,y+255,25,-16);
+  rect(x+25,y+255,-25,-16);
+  rect(x+55,y+255,-30,-14);
+   }
+   
+   if (n.length()<20 && n.length()>=18){
+  rect(x-80,y+210,25,16);
+  rect(x-55,y+210,30,18);
+  rect(x+25,y+210,-25,20);
+  rect(x+55,y+210,-30,18);
+  rect(x+80,y+210,-25,16);
+  
+  rect(x-55,y+255,30,-14);
+  rect(x-25,y+255,25,-16);
+  rect(x+25,y+255,-25,-16);
+  rect(x+55,y+255,-30,-14);
+  
+   }
+   
+   if (n.length()==20){
+      rect(x-80,y+210,25,16);
+  rect(x-55,y+210,30,18);
+  rect(x-25,y+210,25,20);
+  rect(x+25,y+210,-25,20);
+  rect(x+55,y+210,-30,18);
+  rect(x+80,y+210,-25,16);
+  
+  rect(x-55,y+255,30,-14);
+  rect(x-25,y+255,25,-16);
+  rect(x+25,y+255,-25,-16);
+  rect(x+55,y+255,-30,-14);
+  
+   }
+   
+   
+  //NASO C.................................................
+  fill(col);
+  quad(x-10, y+185, x-10, y+200, x-45, y+200, x-40, y+185);
+  quad(x+10, y+185, x+10, y+200, x+45, y+200, x+40, y+185);
+
+  noFill();
+  stroke(col);
+  strokeWeight(5);
+
+
+//SCAPOLE C............................................
+  line(x-75,y+281,x+75,y+281);
+ 
+    }}
+    
+    
+ 
+//SCELTA DELLA TESTA D...........................................................................................................
+if (n.length()>0){
+    if(n.charAt(p)=='4'|| n.charAt(p)=='w' || n.charAt(p)=='W' || n.charAt(p)=='d' || n.charAt(p)=='D' || n.charAt(p)=='m' || n.charAt(p)=='M' || n.charAt(p)=='s' || n.charAt(p)=='S' ){
+
+//TESTA D..................................................
+  beginShape();
+  
+  vertex(x-95, y+280);
+  vertex(x-85,y+275);
+ 
+  
+  vertex(x-98,y+270);
+  vertex(x-98,y+240);
+  vertex(x-93,y+240);
+  vertex(x-93,y+235);
+  vertex(x-98,y+225);
+  vertex(x-98,y+185);
+  vertex(x-93,y+175);
+  vertex(x-93,y+170);
+  vertex(x-98,y+170);
+  vertex(x-98,y+140);
+  vertex(x-93,y+140);
+  vertex(x-98,y+108);
+  
+  vertex(x-77,y+84);
+  vertex(x-53,y+84);
+  vertex(x,y+5);
+  vertex(x+53,y+84);
+  vertex(x+33,y+84);
+  vertex(x,y+35);
+  vertex(x-15,y+57);
+  vertex(x-30,y+35);
+  vertex(x-63,y+84);
+
+ 
+  vertex(x-85, y+110);
+  vertex(x-80, y+145);
+  vertex(x-85, y+145);
+  vertex(x-85, y+165);
+  vertex(x-80, y+165);
+  vertex(x-80, y+180);
+  vertex(x-85, y+185);
+  vertex(x-85, y+225);
+  vertex(x-80, y+230);
+  vertex(x-80, y+245);
+  vertex(x-85, y+245);
+  vertex(x-85, y+265);
+  
+  vertex(x+85, y+265);
+  vertex(x+85, y+245);
+  vertex(x+80, y+245);
+  
+  vertex(x+80, y+230);
+  vertex(x+85, y+225);
+  vertex(x+85, y+185);
+  vertex(x+80, y+180);
+  vertex(x+80, y+165);
+  vertex(x+85, y+165);
+  vertex(x+85, y+145);
+  vertex(x+80, y+145);
+  vertex(x+85, y+110);
+
+  vertex(x+63,y+84);
+  vertex(x+40,y+50);
+  vertex(x+29,y+64);
+  vertex(x,y+20);
+  vertex(x-43,y+84);
+  vertex(x-23,y+84);
+  vertex(x,y+50);
+  vertex(x+23,y+84);
+  vertex(x+75,y+84);
+ 
+  vertex(x+98,y+108);
+  vertex(x+93,y+140);
+  vertex(x+98,y+140);
+  vertex(x+98,y+170);
+  vertex(x+93,y+170);
+  vertex(x+93,y+175);
+  vertex(x+98,y+185);
+  vertex(x+98,y+225);
+  vertex(x+93,y+235);
+  vertex(x+93,y+240);
+  vertex(x+98,y+240);
+  vertex(x+98,y+270);
+ 
+  vertex(x+85,y+275);
+  vertex(x+95, y+280);
+
+  endShape();
+
+
+//RUGHE D.................................................
+  
+   for (int i=0;i<n.length();i++){
+    if (n.charAt(i)=='a' || n.charAt(i)=='A' || n.charAt(i)=='à') {line(x-65,y+110,x-85,y+110);
+                                                                   line(x+65,y+110,x+85,y+110);}
+    if (n.charAt(i)=='e' || n.charAt(i)=='E' || n.charAt(i)=='è'|| n.charAt(i)=='è') {line(x-64,y+120,x-82,y+120); 
+                                                                                      line(x+64,y+120,x+82,y+120);}                         
+    if (n.charAt(i)=='i' || n.charAt(i)=='I' || n.charAt(i)=='ì') { line(x-60,y+130,x-81,y+130);
+                                                                    line(x+60,y+130,x+81,y+130); }
+    if (n.charAt(i)=='o' || n.charAt(i)=='O'|| n.charAt(i)=='ò') {beginShape();
+                                                                    vertex(x+30,y+92);
+                                                                    vertex(x,y+114-controllore(n)/30);
+                                                                    vertex(x-30,y+92);
+                                                                  endShape();}
+     }
+  
+
+//OCCHI D.........................................
+ beginShape();
+   vertex(x,y+145);
+   vertex(x,y+125-controllore(n)/30);
+   vertex(x+40,y+95);
+   vertex(x+65,y+110);
+   vertex(x+55,y+145);  
+  endShape();
+  
+   beginShape();
+   vertex(x,y+145);
+   vertex(x,y+125-controllore(n)/30);
+   vertex(x-40,y+95);
+   vertex(x-65,y+110);
+   vertex(x-55,y+145);  
+  endShape();
+
+//PUPILLE D.......................................
+  fill(col);
+  noStroke();
+  
+  int cp=controllore(n)/18;
+  
+if(n.length()==1 || n.length()==5 || n.length()==9 || n.length()==13 || n.length()==17){
+triangle(x+35+cp,y+115,x+35+cp,y+135,x+15+cp,y+135);
+triangle(x-35-cp,y+115,x-35-cp,y+135,x-15-cp,y+135);
+}
+
+if(n.length()==2 || n.length()==6 || n.length()==10 || n.length()==14 || n.length()==18){
+  quad(x+35+cp,y+115,x+35+cp,y+135,x+15+cp,y+135,x+20+cp,y+120);
+quad(x-35-cp,y+115,x-35-cp,y+135,x-15-cp,y+135,x-20-cp,y+120);
+ 
+}
+
+if(n.length()==3 || n.length()==7|| n.length()==11 || n.length()==15 || n.length()==19){
+  beginShape();
+  vertex(x+35+cp,y+115);
+  vertex(x+35+cp,y+135);
+  vertex(x+15+cp,y+135);
+  vertex(x+15+cp,y+125);
+  vertex(x+25+cp,y+115);
+endShape();  
+
+beginShape();
+  vertex(x-35-cp,y+115);
+  vertex(x-35-cp,y+135);
+  vertex(x-15-cp,y+135);
+  vertex(x-15-cp,y+125);
+  vertex(x-25-cp,y+115);
+endShape(); 
+}
+
+if(n.length()==4 || n.length()==8 || n.length()==12 || n.length()==16|| n.length()==20){
+rect(x+35+cp,y+115,-  20,20);
+rect(x-35-cp,y+115,20,20);
+}
+ 
+  noFill();
+  stroke(col);
+  strokeWeight(5);
+
+
+
+
+//NASO D.................................................
+  
+  fill(col);
+  
+   for (int i=0;i<n.length();i++){
+  
+    if (n.charAt(i)=='u' || n.charAt(i)=='U') { 
+  beginShape();
+  vertex(x,y+145);
+  vertex(x,y+140);
+  vertex(x-10,y+130);
+  vertex(x-15,y+145);
+  endShape();
+  
+  beginShape();
+  vertex(x,y+145);
+  vertex(x,y+140);
+  vertex(x+10,y+130);
+  vertex(x+15,y+145);
+  endShape(); }
+  }
+  
+  
+  noFill();
+
+
+//BOCCA D..........................................
+  line(x-80, y+245, x+80, y+245);
+  line(x-80, y+230, x+80, y+230);
+  line(x-80, y+180, x+80, y+180);
+  line(x-80, y+165, x+80, y+165);
+  line(x-80, y+145, x+80, y+145);
+  
+//DENTI D................................................. 
+if (n.length()<4 && n.length()>=2){
+  fill(back);
+  triangle(x-40,y+165,x-20,y+165,x-30,y+210);
+ 
+   }
+   
+   if (n.length()<6 && n.length()>=4){
+     fill(back);
+     triangle(x-40,y+165,x-20,y+165,x-30,y+210);
+  triangle(x+40,y+165,x+20,y+165,x+30,y+210);
+      }
+   
+   if (n.length()<8 && n.length()>=6){fill(back);  
+  triangle(x-40,y+165,x-20,y+165,x-30,y+210);
+  triangle(x+40,y+165,x+20,y+165,x+30,y+210);
+  triangle(x-70,y+245,x-50,y+245,x-60,y+195);
+      
+   }
+   
+   if (n.length()<10 && n.length()>=8){
+     fill(back);  
+  triangle(x-40,y+165,x-20,y+165,x-30,y+210);
+  triangle(x+40,y+165,x+20,y+165,x+30,y+210);
+  triangle(x-70,y+245,x-50,y+245,x-60,y+195);
+  triangle(x+70,y+245,x+50,y+245,x+60,y+195);
+      
+   }
+   
+   if (n.length()<12 && n.length()>=10){
+    fill(back);  
+  triangle(x-40,y+165,x-20,y+165,x-30,y+210);
+  triangle(x+40,y+165,x+20,y+165,x+30,y+210);
+  triangle(x-70,y+245,x-50,y+245,x-60,y+195);
+  triangle(x+70,y+245,x+50,y+245,x+60,y+195);
+  line(x,y+165,x,y+180); 
+   
+   }
+   
+   if (n.length()<14 && n.length()>=12){
+       fill(back);  
+  triangle(x-40,y+165,x-20,y+165,x-30,y+210);
+  triangle(x+40,y+165,x+20,y+165,x+30,y+210);
+  triangle(x-70,y+245,x-50,y+245,x-60,y+195);
+  triangle(x+70,y+245,x+50,y+245,x+60,y+195);
+  line(x,y+165,x,y+180);
+  line(x+60,y+165,x+60,y+180);
+     
+   
+   }
+   
+   if (n.length()<16 && n.length()>=14){
+      fill(back);  
+  triangle(x-40,y+165,x-20,y+165,x-30,y+210);
+  triangle(x+40,y+165,x+20,y+165,x+30,y+210);
+  triangle(x-70,y+245,x-50,y+245,x-60,y+195);
+  triangle(x+70,y+245,x+50,y+245,x+60,y+195);
+  line(x,y+165,x,y+180);
+  line(x+60,y+165,x+60,y+180);
+  line(x-60,y+165,x-60,y+180);
+      
+   }
+   
+   if (n.length()<18 && n.length()>=16){   
+     fill(back);  
+  triangle(x-40,y+165,x-20,y+165,x-30,y+210);
+  triangle(x+40,y+165,x+20,y+165,x+30,y+210);
+  triangle(x-70,y+245,x-50,y+245,x-60,y+195);
+  triangle(x+70,y+245,x+50,y+245,x+60,y+195);
+  line(x,y+165,x,y+180);
+  line(x+60,y+165,x+60,y+180);
+  line(x-60,y+165,x-60,y+180);
+  line(x+30,y+245,x+30,y+230);
+ 
+   }
+   
+   if (n.length()<20 && n.length()>=18){
+     fill(back);  
+  triangle(x-40,y+165,x-20,y+165,x-30,y+210);
+  triangle(x+40,y+165,x+20,y+165,x+30,y+210);
+  triangle(x-70,y+245,x-50,y+245,x-60,y+195);
+  triangle(x+70,y+245,x+50,y+245,x+60,y+195);
+  line(x,y+165,x,y+180);
+  line(x+60,y+165,x+60,y+180);
+  line(x-60,y+165,x-60,y+180);
+  line(x+30,y+245,x+30,y+230);
+  line(x-30,y+245,x-30,y+230);
+  
+   }
+   
+   if (n.length()==20){
+   fill(back);  
+  triangle(x-40,y+165,x-20,y+165,x-30,y+210);
+  triangle(x+40,y+165,x+20,y+165,x+30,y+210);
+  triangle(x-70,y+245,x-50,y+245,x-60,y+195);
+  triangle(x+70,y+245,x+50,y+245,x+60,y+195);
+  line(x,y+165,x,y+180);
+  line(x+60,y+165,x+60,y+180);
+  line(x-60,y+165,x-60,y+180);
+  line(x+30,y+245,x+30,y+230);
+  line(x-30,y+245,x-30,y+230);
+  line(x,y+245,x,y+230);
+  
+   }
+
+
+//SCAPOLE D......................................................
+beginShape();
+   vertex(x-75,y+281);
+   vertex(x,y+281);
+   vertex(x+75,y+281);
+   endShape();
+ 
+ 
+    }}
+ 
+ 
+   
+   
+//SCELTA DELLA TESTA E.............................................................................................................................
+if (n.length()>0){
+    if(n.charAt(p)=='5' || n.charAt(p)=='x' || n.charAt(p)=='X' || n.charAt(p)=='e' || n.charAt(p)=='E' || n.charAt(p)=='è' || n.charAt(p)=='é'|| n.charAt(p)=='n' || n.charAt(p)=='N' || n.charAt(p)=='t' || n.charAt(p)=='T' || n.charAt(p)=='z' ||n.charAt(p)=='Z'){
+
+  //TESTA E..................................................
+  beginShape();
+
+  vertex(x-95, y+280);
+  vertex(x-85,y+275);
+  
+  vertex(x-100,y+270);
+  vertex(x-115,y+240);
+  vertex(x-110,y+240);
+  vertex(x-110,y+215);
+  vertex(x-115,y+215);
+  vertex(x-97,y+180);
+  vertex(x-108,y+140);
+  vertex(x-83,y+108);
+  vertex(x-83,y+100);
+  
+  vertex(x-75,y+84);
+  vertex(x-53,y+84);
+  vertex(x,y+5);
+  vertex(x+53,y+84);
+  vertex(x+33,y+84);
+  vertex(x,y+35);
+  vertex(x-15,y+57);
+  vertex(x-30,y+35);
+  vertex(x-63,y+84);
+
+  vertex(x-70, y+100);
+  vertex(x-70, y+110);
+  vertex(x-95, y+140);
+  vertex(x-85, y+180);
+  vertex(x-90, y+190);
+  vertex(x-100, y+210);
+  vertex(x-90, y+210);
+  vertex(x-90, y+245);
+  vertex(x-100, y+245);
+  
+  vertex(x-90, y+265);
+  vertex(x, y+280);
+  vertex(x+90, y+265);
+  
+  vertex(x+100, y+245);
+  vertex(x+90, y+245);
+  vertex(x+90, y+210);
+  vertex(x+100, y+210);
+  vertex(x+90, y+190);
+  vertex(x+85, y+180);
+  vertex(x+95, y+140);
+  vertex(x+70, y+110);
+  vertex(x+70, y+100);
+
+
+  vertex(x+63,y+84);
+  vertex(x+40,y+50);
+  vertex(x+29,y+64);
+  vertex(x,y+20);
+  vertex(x-43,y+84);
+  vertex(x-23,y+84);
+  vertex(x,y+50);
+  vertex(x+23,y+84);
+  vertex(x+75,y+84);
+
+  
+  vertex(x+83,y+100);
+  vertex(x+83,y+108);
+  vertex(x+108,y+140);
+  vertex(x+97,y+180);
+  vertex(x+115,y+215);
+  vertex(x+110,y+215);
+  vertex(x+110,y+240);
+  vertex(x+115,y+240);
+  vertex(x+100,y+270);
+ 
+  vertex(x+85,y+275);
+  vertex(x+95, y+280);
+  endShape();
+
+
+//RUGHE E.................................................
+ 
+  for (int i=0;i<n.length();i++){
+    if (n.charAt(i)=='a' || n.charAt(i)=='A' || n.charAt(i)=='à') { beginShape();
+ vertex(x-70, y+100);
+ vertex(x-30, y+120);
+ vertex(x-30, y+170);
+
+    endShape();}
+                                               
+    if (n.charAt(i)=='e' || n.charAt(i)=='E' || n.charAt(i)=='è'|| n.charAt(i)=='è') {  
+    beginShape();
+ vertex(x+70, y+100);
+ vertex(x+30, y+120);
+ vertex(x+30, y+170);
+    endShape();}    
+                                                                                       
+    if (n.charAt(i)=='i' || n.charAt(i)=='I' || n.charAt(i)=='ì') { line(x-85,y+190,x-30,y+170);
+                                                line(x+85,y+190,x+30,y+170); }
+    if (n.charAt(i)=='o' || n.charAt(i)=='O'|| n.charAt(i)=='ò') {beginShape();
+                                                                    vertex(x-10, y+110);
+                                                                    vertex(x-40, y+100);
+                                                                  endShape();
+                      
+                                                                  beginShape();
+                                                                    vertex(x+10, y+110);
+                                                                    vertex(x+40, y+100);
+                                                                  endShape();}
+                                                                  
+      if (n.charAt(i)=='u' || n.charAt(i)=='U'|| n.charAt(i)=='ù') {beginShape();
+                                                                    vertex(x-5, y+135);
+                                                                    vertex(x-12, y+108);
+                                                                  endShape();
+                      
+                                                                  beginShape();
+                                                                    vertex(x+5, y+135);
+                                                                    vertex(x+12, y+108);
+                                                                  endShape();}                                                             
+    }
+      
+
+//OCCHI E.........................................
+ beginShape();
+ vertex(x-70, y+110);
+ vertex(x-40-controllore(n)/20, y+125);
+ vertex(x-40-controllore(n)/20, y+165);
+ vertex(x-85, y+180);
+    endShape();
+  
+   beginShape();
+ vertex(x+70, y+110);
+ vertex(x+40+controllore(n)/20, y+125);
+ vertex(x+40+controllore(n)/20, y+165);
+ vertex(x+85, y+180);    
+  endShape();
+
+//PUPILLE E.......................................
+
+
+
+
+
+
+ fill(col);
+  noStroke();
+  
+  int cp=controllore(n)/18;
+
+
+if(n.length()==1 || n.length()==5 || n.length()==9 || n.length()==13 || n.length()==17){
+triangle(x+70+cp,y+145,x+70+cp,y+165,x+50+cp,y+165);
+triangle(x-70-cp,y+145,x-70-cp,y+165,x-50-cp,y+165);
+}
+
+if(n.length()==2 || n.length()==6 || n.length()==10 || n.length()==14 || n.length()==18){
+  quad(x+70+cp,y+145,x+70+cp,y+165,x+50+cp,y+165,x+55+cp,y+150);
+quad(x-70-cp,y+145,x-70-cp,y+165,x-50-cp,y+165,x-55-cp,y+150);
+ 
+}
+
+if(n.length()==3 || n.length()==7|| n.length()==11 || n.length()==15 || n.length()==19){
+  beginShape();
+  vertex(x+70+cp,y+145);
+  vertex(x+70+cp,y+165);
+  vertex(x+50+cp,y+165);
+  vertex(x+50+cp,y+155);
+  vertex(x+60+cp,y+145);
+endShape();  
+
+beginShape();
+  vertex(x-70-cp,y+145);
+  vertex(x-70-cp,y+165);
+  vertex(x-50-cp,y+165);
+  vertex(x-50-cp,y+155);
+  vertex(x-60-cp,y+145);
+endShape(); 
+}
+
+if(n.length()==4 || n.length()==8 || n.length()==12 || n.length()==16|| n.length()==20){
+rect(x+70+cp,y+145,- 20,20);
+rect(x-70-cp,y+145,20,20);
+}
+
+
+  
+  
+  
+  
+  noFill();
+  stroke(col);
+  strokeWeight(5);
+
+  //NASO E.................................................
+  fill(back);
+  beginShape();
+  
+  vertex(x-50,y+190);
+  vertex(x-40,y+160);
+  vertex(x-15,y+140);
+  vertex(x,y+150);
+  vertex(x,y+190);
+  endShape();
+  
+  beginShape();
+  
+  vertex(x+50,y+190);
+  vertex(x+40,y+160);
+  vertex(x+15,y+140);
+  vertex(x,y+150);
+  vertex(x,y+190);
+  endShape();
+  
+  noFill();
+  stroke(col);
+  strokeWeight(5);
+  
+   line(x+90,y+190,x+10,y+190);
+   line(x-90,y+190,x-10,y+190);
+  
+ 
+  fill(col);
+  beginShape();
+  vertex(x-10,y+180);
+  vertex(x-40,y+180);
+  vertex(x-30,y+165);
+  vertex(x-15,y+155);
+  vertex(x-10,y+160);
+  vertex(x-10,y+200);
+  endShape();
+  
+  beginShape();
+  vertex(x+10,y+180);
+  vertex(x+35,y+180);
+  vertex(x+30,y+165);
+  vertex(x+15,y+155);
+  vertex(x+10,y+160);
+  vertex(x+10,y+200);
+  endShape();
+  
+  noFill();
+   stroke(col);
+  strokeWeight(5);
+
+//BOCCA E..........................................
+  line(x-100,y+210,x+100,y+210);
+  line(x-100, y+245, x+100,y+245);
+  
+
+//DENTI E...............................................
+if (n.length()<3 && n.length()>=2){
+    fill(back);  
+  rect(x+5,y+210,15,13);
+  
+   }
+   
+   if (n.length()<4 && n.length()>=3){
+      fill(back);  
+  rect(x+5,y+210,15,13);
+  rect(x+95,y+210,-30,13);
+  
+      }
+   
+   if (n.length()<5 && n.length()>=4){
+   fill(back);  
+  rect(x+5,y+210,15,13);
+  rect(x+95,y+210,-30,13);
+  rect(x-65,y+210,30,13);
+    
+   }
+   
+   if (n.length()<6 && n.length()>=5){
+   fill(back);  
+  rect(x+5,y+210,15,13);
+  rect(x+95,y+210,-30,13);
+  rect(x-65,y+210,30,13);
+  rect(x-25,y+210,20,13);
+  
+      
+   }
+   
+   if (n.length()<7 && n.length()>=6){
+    fill(back);  
+  rect(x+5,y+210,15,13);
+  rect(x+95,y+210,-30,13);
+  rect(x-65,y+210,30,13);
+  rect(x-25,y+210,20,13);
+  rect(x+30,y+210,25,13);
+ 
+   
+   }
+   
+   if (n.length()<9 && n.length()>=7){
+  fill(back);  
+  rect(x+5,y+210,15,13);
+  rect(x+95,y+210,-30,13);
+  rect(x-65,y+210,30,13);
+  rect(x-25,y+210,20,13);
+  rect(x+30,y+210,25,13);
+  rect(x-95,y+210,20,13);
+  
+  
+     
+   
+   }
+   
+   if (n.length()<11 && n.length()>=9){
+   fill(back);  
+  rect(x+5,y+210,15,13);
+  rect(x+95,y+210,-30,13);
+  rect(x-25,y+210,20,13);
+  rect(x+30,y+210,25,13);
+  rect(x-95,y+210,20,13);
+  rect(x-65,y+210,30,13);
+  rect(x-20,y+245,15,-13);
+   
+      
+   }
+   
+   if (n.length()<13 && n.length()>=11){   
+     fill(back);  
+  rect(x+5,y+210,15,13);
+  rect(x+95,y+210,-30,13);
+  rect(x-25,y+210,20,13);
+  rect(x+30,y+210,25,13);
+  rect(x-95,y+210,20,13);
+  rect(x-65,y+210,30,13);
+  rect(x-20,y+245,15,-13);
+  rect(x+95,y+245,-20,-13);
+  
+ 
+   }
+   
+   if (n.length()<15 && n.length()>=13){
+ fill(back);  
+  rect(x+5,y+210,15,13);
+  rect(x+95,y+210,-30,13);
+  rect(x-25,y+210,20,13);
+  rect(x+30,y+210,25,13);
+  rect(x-95,y+210,20,13);
+  rect(x-65,y+210,30,13);
+  rect(x-20,y+245,15,-13);
+  rect(x+95,y+245,-20,-13);
+  rect(x+25,y+245,-20,-13);
+ 
+  
+   }
+   
+   if (n.length()<17 && n.length()>=15){
+  fill(back);  
+  rect(x+5,y+210,15,13);
+  rect(x+95,y+210,-30,13);
+  rect(x-25,y+210,20,13);
+  rect(x+30,y+210,25,13);
+  rect(x-95,y+210,20,13);
+  rect(x-65,y+210,30,13);
+  rect(x-20,y+245,15,-13);
+  rect(x+95,y+245,-20,-13);
+  rect(x+25,y+245,-20,-13);
+  rect(x-95,y+245,25,-13);
+  
+  
+   }
+   
+   if (n.length()<19 && n.length()>=17){
+   fill(back);  
+  rect(x+5,y+210,15,13);
+  rect(x+95,y+210,-30,13);
+  rect(x-25,y+210,20,13);
+  rect(x+30,y+210,25,13);
+  rect(x-95,y+210,20,13);
+  rect(x-65,y+210,30,13);
+  rect(x-20,y+245,15,-13);
+  rect(x+95,y+245,-20,-13);
+  rect(x+25,y+245,-20,-13);
+  rect(x-95,y+245,25,-13);
+  rect(x-60,y+245,30,-13);
+ 
+  
+   }
+   
+   
+   
+   if (n.length()<=20 && n.length()>=19){
+  fill(back);  
+  rect(x+5,y+210,15,13);
+  rect(x+95,y+210,-30,13);
+  rect(x-25,y+210,20,13);
+  rect(x+30,y+210,25,13);
+  rect(x-95,y+210,20,13);
+  rect(x-65,y+210,30,13);
+  rect(x-20,y+245,15,-13);
+  rect(x+95,y+245,-20,-13);
+  rect(x+25,y+245,-20,-13);
+  rect(x-95,y+245,25,-13);
+  rect(x-60,y+245,30,-13);
+  rect(x+65,y+245,-30,-13);
+  
+   }
+
+//SCAPOLE E.........................................................
+ beginShape();
+  vertex(x-75,y+281);
+  vertex(x,y+296);
+  vertex(x+75,y+281);
+endShape();
+   
+    }}  
+   
+   
+   
+   
+   
+   
+   
+// SCELTA DELLA TESTA F.............................................................................................................
+
+if (n.length()>0){
+    if(n.charAt(p)=='6' || n.charAt(p)=='y' || n.charAt(p)=='Y' || n.charAt(p)=='f' || n.charAt(p)=='F' || n.charAt(p)=='o' || n.charAt(p)=='O'|| n.charAt(p)=='ò' || n.charAt(p)=='u' || n.charAt(p)=='U' || n.charAt(p)=='ù' || n.charAt(p)=='v' || n.charAt(p)=='V'){
+
+//TESTA F..................................................
+beginShape();
+  vertex(x-95, y+280);
+  vertex(x-85,y+275);
+  
+  vertex(x-90, y+267);
+  vertex(x-98,y+210);
+  vertex(x-103,y+208);
+  vertex(x-83,y+175);
+  vertex(x-102,y+142);
+  vertex(x-88,y+99);
+  
+  vertex(x-75,y+84);
+  vertex(x-53,y+84);
+  vertex(x,y+5);
+  vertex(x+53,y+84);
+  vertex(x+33,y+84);
+  vertex(x,y+35);
+  vertex(x-15,y+57);
+  vertex(x-30,y+35);
+  vertex(x-63,y+84);
+ 
+  vertex(x-75,y+100); 
+  vertex(x-90, y+140);
+  vertex(x-70, y+175);
+  vertex(x-90, y+205);
+  vertex(x-85, y+205);
+  
+  vertex(x-80, y+265);
+  vertex(x,y+300);
+  vertex(x+80, y+265);
+  
+  vertex(x+85, y+205);
+  vertex(x+90,y+205);
+  vertex(x+70,y+175);
+  vertex(x+90,y+140);
+  vertex(x+75,y+100);
+  
+  vertex(x+63,y+84);
+  vertex(x+40,y+50);
+  vertex(x+29,y+64);
+  vertex(x,y+20);
+  vertex(x-43,y+84);
+  vertex(x-23,y+84);
+  vertex(x,y+50);
+  vertex(x+23,y+84);
+  vertex(x+75,y+84);
+  
+  vertex(x+88,y+99);
+  vertex(x+102,y+142);
+  vertex(x+83,y+175);
+  vertex(x+103,y+208);
+  vertex(x+98,y+210);
+  vertex(x+90, y+267);
+ 
+  vertex(x+85,y+275);
+  vertex(x+95, y+280);
+endShape();
+
+
+//RUGHE F.................................................
+  
+
+
+ 
+
+ 
+   for (int i=0;i<n.length();i++){
+    if (n.charAt(i)=='a' || n.charAt(i)=='A' || n.charAt(i)=='à') { line(x-30,y+100+controllore(n)/40,x-5,y+110);
+                                                                    line(x+30,y+100+controllore(n)/40,x+5,y+110);}
+                                               
+    if (n.charAt(i)=='e' || n.charAt(i)=='E' || n.charAt(i)=='è'|| n.charAt(i)=='è') {line(x-5,y+108,x-5,y+120);
+                                                                                      line(x+5,y+108,x+5,y+120);   }    
+                                                                                       
+    if (n.charAt(i)=='i' || n.charAt(i)=='I' || n.charAt(i)=='ì') { line(x,y+165,x,y+135);  }
+    if (n.charAt(i)=='o' || n.charAt(i)=='O'|| n.charAt(i)=='ò') {line(x-40,y+170,x-20,y+175);
+                                                                  line(x+40,y+170,x+20,y+175);}
+                                                                  
+      if (n.charAt(i)=='u' || n.charAt(i)=='U'|| n.charAt(i)=='ù') {line(x-22,y+174,x-5,y+195);
+                                                                    line(x+22,y+174,x+5,y+195);}                                                             
+    }
+
+//OCCHI F.........................................
+ fill(col);
+ noStroke();
+ beginShape();
+ vertex(x-65,y+100+controllore(n)/30);
+ vertex(x-80+controllore(n)/50,y+140);
+ vertex(x-70,y+160);
+ vertex(x-20,y+160);
+vertex(x-10,y+120);
+    endShape(CLOSE);
+  
+   beginShape();
+ vertex(x+65,y+100+controllore(n)/30);
+ vertex(x+80-controllore(n)/50,y+140);
+ vertex(x+70,y+160);
+ vertex(x+20,y+160);
+vertex(x+10,y+120);   
+  endShape();
+
+ 
+  fill(back);
+ 
+  beginShape();
+ vertex(x-61,y+110+controllore(n)/32);
+ vertex(x-71+controllore(n)/50,y+140);
+ vertex(x-65,y+153);
+ vertex(x-25,y+153);
+vertex(x-20,y+125);
+    endShape(CLOSE);
+  
+   beginShape();
+ vertex(x+61,y+110+controllore(n)/32);
+ vertex(x+71-controllore(n)/50,y+140);
+ vertex(x+65,y+153);
+ vertex(x+25,y+153);
+vertex(x+20,y+125);   
+  endShape();
+
+ noFill();
+ stroke(col);
+ strokeWeight(5);
+  
+
+//PUPILLE F.......................................
+ 
+ // rect(x-45, y+140, 15, 15);
+ // rect(x+30, y+140, 15, 15);
+ 
+fill(col);
+  noStroke();
+  
+  int cp=controllore(n)/18;
+  
+if(n.length()==1 || n.length()==5 || n.length()==9 || n.length()==13 || n.length()==17){
+triangle(x+45+cp,y+135,x+45+cp,y+155,x+25+cp,y+155);
+triangle(x-45-cp,y+135,x-45-cp,y+155,x-25-cp,y+155);
+}
+
+if(n.length()==2 || n.length()==6 || n.length()==10 || n.length()==14 || n.length()==18){
+  quad(x+45+cp,y+135,x+45+cp,y+155,x+25+cp,y+155,x+30+cp,y+135);
+quad(x-45-cp,y+135,x-45-cp,y+155,x-25-cp,y+155,x-30-cp,y+135);
+ 
+}
+
+if(n.length()==3 || n.length()==7|| n.length()==11 || n.length()==15 || n.length()==19){
+  beginShape();
+  vertex(x+45+cp,y+135);
+  vertex(x+45+cp,y+155);
+  vertex(x+25+cp,y+155);
+  vertex(x+25+cp,y+145);
+  vertex(x+35+cp,y+135);
+endShape();  
+
+beginShape();
+  vertex(x-45-cp,y+135);
+  vertex(x-45-cp,y+155);
+  vertex(x-25-cp,y+155);
+  vertex(x-25-cp,y+145);
+  vertex(x-35-cp,y+135);
+endShape(); 
+}
+
+if(n.length()==4 || n.length()==8 || n.length()==12 || n.length()==16|| n.length()==20){
+rect(x+45+cp,y+135,-20,20);
+rect(x-45-cp,y+135,20,20);
+}
+ 
+  noFill();
+  stroke(col);
+  strokeWeight(5);
+
+
+//NASO F.................................................
+  fill(col);
+  beginShape();
+  vertex(x-60,y+205);
+  vertex(x-10,y+205);
+  vertex(x-25,y+185);
+  vertex(x-45,y+180);
+  endShape(CLOSE);
+
+  beginShape();
+  vertex(x+60,y+205);
+  vertex(x+10,y+205);
+  vertex(x+25,y+185);
+  vertex(x+45,y+180);
+  endShape(CLOSE);
+  
+  noFill();
+  stroke(col);
+  strokeWeight(5);
+
+
+//BOCCA F..........................................
+  line(x-90, y+205, x+90, y+205);
+  
+  beginShape();
+    vertex(x-70,y+205);
+    vertex(x-65,y+255);
+    vertex(x,y+285);
+    vertex(x+65,y+255);
+    vertex(x+70,y+205);
+    endShape();
+    
+//DENTI F...................................................
+if (n.length()<4 && n.length()>=2){
+  fill(back);
+  triangle(x-40,y+205,x-20,y+205,x-30,y+235);
+ 
+   }
+   
+   if (n.length()<6 && n.length()>=4){
+    fill(back);
+  triangle(x-40,y+205,x-20,y+205,x-30,y+235);
+  triangle(x+40,y+205,x+20,y+205,x+30,y+235); 
+      }
+   
+   if (n.length()<8 && n.length()>=6){  
+  fill(back);
+  triangle(x-40,y+205,x-20,y+205,x-30,y+235);
+  triangle(x+40,y+205,x+20,y+205,x+30,y+235);
+  triangle(x+20,y+275,x+2,y+283,x+10,y+250);
+   }
+   
+   if (n.length()<10 && n.length()>=8){
+   fill(back);
+  triangle(x-40,y+205,x-20,y+205,x-30,y+235);
+  triangle(x+40,y+205,x+20,y+205,x+30,y+235);
+  triangle(x+20,y+275,x+2,y+283,x+10,y+250);
+  triangle(x-20,y+275,x-2,y+283,x-10,y+250);  
+      
+   }
+   
+   if (n.length()<12 && n.length()>=10){
+   fill(back);
+  triangle(x-40,y+205,x-20,y+205,x-30,y+235);
+  triangle(x+40,y+205,x+20,y+205,x+30,y+235);
+  triangle(x+20,y+275,x+2,y+283,x+10,y+250);
+  triangle(x-20,y+275,x-2,y+283,x-10,y+250);
+  triangle(x-20,y+205,x,y+205,x-10,y+225); 
+   
+   }
+   
+   if (n.length()<14 && n.length()>=12){
+   fill(back);
+  triangle(x-40,y+205,x-20,y+205,x-30,y+235);
+  triangle(x+40,y+205,x+20,y+205,x+30,y+235);
+  triangle(x+20,y+275,x+2,y+283,x+10,y+250);
+  triangle(x-20,y+275,x-2,y+283,x-10,y+250);
+  triangle(x-20,y+205,x,y+205,x-10,y+225);
+  triangle(x+20,y+205,x,y+205,x+10,y+225);   
+     
+   
+   }
+   
+   if (n.length()<16 && n.length()>=14){
+   fill(back);
+  triangle(x-40,y+205,x-20,y+205,x-30,y+235);
+  triangle(x+40,y+205,x+20,y+205,x+30,y+235);
+  triangle(x+20,y+275,x+2,y+283,x+10,y+250);
+  triangle(x-20,y+275,x-2,y+283,x-10,y+250);
+  triangle(x-20,y+205,x,y+205,x-10,y+225);
+  triangle(x+20,y+205,x,y+205,x+10,y+225);
+  triangle(x-65,y+205,x-40,y+205,x-55,y+225);   
+      
+   }
+   
+   if (n.length()<18 && n.length()>=16){   
+    fill(back);
+  triangle(x-40,y+205,x-20,y+205,x-30,y+235);
+  triangle(x+40,y+205,x+20,y+205,x+30,y+235);
+  triangle(x+20,y+275,x+2,y+283,x+10,y+250);
+  triangle(x-20,y+275,x-2,y+283,x-10,y+250);
+  triangle(x-20,y+205,x,y+205,x-10,y+225);
+  triangle(x+20,y+205,x,y+205,x+10,y+225);
+  triangle(x-65,y+205,x-40,y+205,x-55,y+225);
+  triangle(x+65,y+205,x+40,y+205,x+55,y+225);
+ 
+   }
+   
+   if (n.length()<20 && n.length()>=18){
+   fill(back);
+  triangle(x-40,y+205,x-20,y+205,x-30,y+235);
+  triangle(x+40,y+205,x+20,y+205,x+30,y+235);
+  triangle(x+20,y+275,x+2,y+283,x+10,y+250);
+  triangle(x-20,y+275,x-2,y+283,x-10,y+250);
+  triangle(x-20,y+205,x,y+205,x-10,y+225);
+  triangle(x+20,y+205,x,y+205,x+10,y+225);
+  triangle(x-65,y+205,x-40,y+205,x-55,y+225);
+  triangle(x+65,y+205,x+40,y+205,x+55,y+225);
+  line(x-66,y+245,x-15,y+265);
+  line(x+66,y+245,x+15,y+265);
+  
+   }
+   
+   if (n.length()==20){
+  fill(back);
+  triangle(x-40,y+205,x-20,y+205,x-30,y+235);
+  triangle(x+40,y+205,x+20,y+205,x+30,y+235);
+  triangle(x+20,y+275,x+2,y+283,x+10,y+250);
+  triangle(x-20,y+275,x-2,y+283,x-10,y+250);
+  triangle(x-20,y+205,x,y+205,x-10,y+225);
+  triangle(x+20,y+205,x,y+205,x+10,y+225);
+  triangle(x-65,y+205,x-40,y+205,x-55,y+225);
+  triangle(x+65,y+205,x+40,y+205,x+55,y+225);
+  line(x-66,y+245,x-15,y+265);
+  line(x+66,y+245,x+15,y+265);
+  line(x-40,y+255,x-40,y+268);
+  line(x+40,y+255,x+40,y+268);
+  
+   }
+
+  
+
+//SCAPOLE F......................................................
+ noFill();
+  
+  beginShape();
+   vertex(x-75,y+281);
+   vertex(x,y+315);
+   vertex(x+75,y+281);
+   endShape();
+
+    }}
+   
+   
+   
+   
+   
+   
+   
+   
+   //*****************************************************************************************************************************************************************************************************************************************************************
+
+//scelta delle braccia............................................................................................................................................................................................................................
+  
+  if (dd.length()>0 && mm.length()>1 && yyyy.length()>3){
+//BRACCIA 1 ..................................
+fill(back);
+
+sommAnno=int(yyyy.substring(0,1))+int(yyyy.substring(1,2))+int(yyyy.substring(2,3))+int(yyyy.substring(3));
+
+
+beginShape();
+  vertex(x-75,y+281);
+  vertex(x-85,y+285);
+  
+  vertex(x-105,y+326+int(dd));
+  
+  vertex(x-100,y+372);
+  vertex(x-60,y+372);
+  
+  
+  vertex(x-(35-sommAnno),y+382);
+  vertex(x-(35-sommAnno),y+377);
+  if(match(mm,"05")!=null|| match(mm,"06")!=null|| match(mm,"07")!=null|| match(mm,"08")!=null|| match(mm,"09")!=null|| match(mm,"10")!=null|| match(mm,"11")!=null|| match(mm,"12")!=null){
+     vertex(x-(50-sommAnno),y+369);
+  }
+  
+ vertex(x-(35-sommAnno),y+362);
+  if(match(mm,"03")!=null || match(mm,"04")!=null|| match(mm,"05")!=null|| match(mm,"06")!=null|| match(mm,"07")!=null|| match(mm,"08")!=null|| match(mm,"09")!=null|| match(mm,"10")!=null){
+     vertex(x-(50-sommAnno),y+354);
+  }
+
+  vertex(x-(35-sommAnno),y+347);
+   if( match(mm,"07")!=null|| match(mm,"08")!=null|| match(mm,"09")!=null|| match(mm,"10")!=null|| match(mm,"11")!=null|| match(mm,"12")!=null ){
+     vertex(x-(50-sommAnno),y+339);
+  }
+  
+  vertex(x-(35-sommAnno),y+332);
+  
+  if(match(mm,"01")!=null || match(mm,"02")!=null || match(mm,"03")!=null || match(mm,"04")!=null|| match(mm,"05")!=null|| match(mm,"06")!=null|| match(mm,"07")!=null|| match(mm,"08")!=null){
+    
+  vertex(x-(55-sommAnno),y+332);
+  vertex(x-(55-sommAnno),y+316);
+  vertex(x-(60-sommAnno),y+316);
+  vertex(x-(70-sommAnno),y+332);
+  }
+  
+  vertex(x-70,y+332);
+endShape(CLOSE);
+    
+beginShape();
+  vertex(x+75,y+281);
+  vertex(x+85,y+285);
+  vertex(x+105,y+326+int(dd));
+  
+  vertex(x+100,y+372);
+  vertex(x+60,y+372);
+  
+  
+  vertex(x+(35-sommAnno),y+382);
+  vertex(x+(35-sommAnno),y+377);
+  if( match(mm,"06")!=null|| match(mm,"07")!=null||match(mm,"08")!=null|| match(mm,"09")!=null|| match(mm,"10")!=null|| match(mm,"11")!=null|| match(mm,"12")!=null){
+     vertex(x+(50-sommAnno),y+369);
+  }
+  
+ vertex(x+(35-sommAnno),y+362);
+  if(match(mm,"04")!=null|| match(mm,"05")!=null|| match(mm,"06")!=null|| match(mm,"07")!=null|| match(mm,"08")!=null|| match(mm,"09")!=null|| match(mm,"10")!=null|| match(mm,"11")!=null){
+     vertex(x+(50-sommAnno),y+354);
+  }
+
+  vertex(x+(35-sommAnno),y+347);
+   if( match(mm,"08")!=null|| match(mm,"09")!=null|| match(mm,"10")!=null|| match(mm,"11")!=null|| match(mm,"12")!=null ){
+     vertex(x+(50-sommAnno),y+339);
+  }
+  
+  vertex(x+(35-sommAnno),y+332);
+  
+  if(match(mm,"02")!=null || match(mm,"03")!=null || match(mm,"04")!=null|| match(mm,"05")!=null|| match(mm,"06")!=null|| match(mm,"07")!=null|| match(mm,"08")!=null|| match(mm,"09")!=null){
+    
+  vertex(x+(55-sommAnno),y+332);
+  vertex(x+(55-sommAnno),y+316);
+  vertex(x+(60-sommAnno),y+316);
+  vertex(x+(70-sommAnno),y+332);
+  }
+  
+  vertex(x+70,y+332);
+endShape(CLOSE);
+
+
+noFill();
+
+    
+   
+
+   
+//DOPPIALINEA BRACCIA............................................
+     
+
+beginShape();
+  vertex(x-95,y+279);
+
+
+
+if(dd.length()>0){
+  vertex(x-(106+int(dd.substring(0,1))+2),y+305+int(dd));
+  vertex(x-(83+int(dd.substring(0,1))+2),y+305+int(dd));
+  vertex(x-92,y+330+int(dd)); }
+ 
+  vertex(x-87,y+372);
+endShape();
+
+beginShape();
+  vertex(x+87,y+372);
+  vertex(x+92,y+330+int(dd));
+  vertex(x+(83+int(dd.substring(0,1))+2),y+305+int(dd));
+    vertex(x+(106+int(dd.substring(0,1))+2),y+305+int(dd));
+   
+  vertex(x+95,y+279);
+endShape();
+
+
+
+   
+   
+ }
+  
+//*****************************************************************************************************************************************************************************************************************************************************************
+
+//scelta della corporatura a............................................................................................................................................................................................................................
+ 
+ if (c.length()>0){
+    if(c.charAt(p)=='1' || c.charAt(p)=='a' || c.charAt(p)=='A' || c.charAt(p)=='à' || c.charAt(p)=='h' || c.charAt(p)=='H' || c.charAt(p)=='g' || c.charAt(p)=='G' || c.charAt(p)=='p' || c.charAt(p)=='P'){
+
+ //CORPO a..............................
+
+beginShape();
+  vertex(x-72,y+375);
+  vertex(x-75,y+410);
+  vertex(x-55,y+395);
+  vertex(x,y+390);
+  vertex(x+55,y+395);
+  vertex(x+75,y+410);
+  vertex(x+72,y+375);
+endShape();
+
+
+
+//TESTA2 a...........................................
+beginShape();
+  vertex(x-75,y+425);
+  vertex(x-55,y+410);
+  vertex(x,y+405);
+  vertex(x+55,y+410);
+  vertex(x+75,y+425);
+  vertex(x+73,y+510);
+  vertex(x,y+535);
+  vertex(x-73,y+510);
+  vertex(x-75,y+435);
+endShape(CLOSE);
+
+
+//OCCHI2 a..........................................
+beginShape();
+  vertex(x-60,y+435);
+  vertex(x-50,y+425);
+  vertex(x-10,y+445-controllore(c)/18);
+  vertex(x-10,y+470);
+  vertex(x-55,y+470);
+endShape(CLOSE);
+
+beginShape();
+  vertex(x+60,y+435);
+  vertex(x+50,y+425);
+  vertex(x+10,y+445-controllore(c)/18);
+  vertex(x+10,y+470);
+  vertex(x+55,y+470);
+endShape(CLOSE);
+
+
+//PUPILLE2 a.......................................
+fill(col);
+noStroke();
+quad(x+20,y+450,x+20,y+465,x+35,y+465,x+35-c.length()+14,y+450+c.length()-14);
+quad(x-20,y+450,x-20,y+465,x-35,y+465,x-35+c.length()-14,y+450+c.length()-14);
+
+stroke(col);
+strokeWeight(5);
+fill(back);
+
+
+//BOCCA2 a.............................................
+beginShape();
+  vertex(x+55,y+480);
+  vertex(x-55,y+480);
+  vertex(x-55,y+505);
+  vertex(x+55,y+505);
+  
+  
+endShape(CLOSE);
+
+//DENTI 2 A...................................................
+
+
+
+  
+  for (int i=0;i< c.length(); i++) {
+    if (c.charAt(i)=='a' || c.charAt(i)=='A'||c.charAt(i)=='n' || c.charAt(i)=='N'||c.charAt(i)=='i' || c.charAt(i)=='I')   {line(x-42,y+480,x-42,y+505);}
+    if (c.charAt(i)=='b' || c.charAt(i)=='B'||c.charAt(i)=='o' || c.charAt(i)=='O'||c.charAt(i)=='u' || c.charAt(i)=='U')   {line(x-6,y+480,x-6,y+505);}
+    if (c.charAt(i)=='c' || c.charAt(i)=='C'||c.charAt(i)=='p' || c.charAt(i)=='P'||c.charAt(i)=='j' || c.charAt(i)=='J')   {line(x+18,y+480,x+18,y+505);}
+    if (c.charAt(i)=='d' || c.charAt(i)=='D'||c.charAt(i)=='w' || c.charAt(i)=='W'||c.charAt(i)=='v' || c.charAt(i)=='V')   {line(x+30,y+480,x+30,y+505);}
+    if (c.charAt(i)=='e' || c.charAt(i)=='E'||c.charAt(i)=='q' || c.charAt(i)=='Q'||c.charAt(i)=='k' || c.charAt(i)=='K')   {line(x+42,y+480,x+42,y+505);}
+    if (c.charAt(i)=='f' || c.charAt(i)=='F'||c.charAt(i)=='r' || c.charAt(i)=='R'||c.charAt(i)=='z' || c.charAt(i)=='Z')   {line(x-18,y+480,x-18,y+505);}
+    if (c.charAt(i)=='g' || c.charAt(i)=='G'||c.charAt(i)=='s' || c.charAt(i)=='S'||c.charAt(i)=='l' || c.charAt(i)=='L'||c.charAt(i)=='y' || c.charAt(i)=='Y')   {line(x-30,y+480,x-30,y+505);}
+    if (c.charAt(i)=='h' || c.charAt(i)=='H'||c.charAt(i)=='t' || c.charAt(i)=='T'||c.charAt(i)=='x' || c.charAt(i)=='X'||c.charAt(i)=='m' || c.charAt(i)=='M')   {line(x+6,y+480,x+6,y+505);}
+   
+  }
+
+//BRACCIA2 a.................................................
+beginShape();
+  vertex(x-73,y+525);
+  vertex(x-76,y+560);
+  vertex(x-10-controllore(c)/18,y+570);
+  vertex(x-10-controllore(c)/18,y+550);
+  vertex(x-55,y+540);
+  vertex(x-55,y+530);
+endShape(CLOSE);
+
+beginShape();
+  vertex(x+73,y+525);
+  vertex(x+76,y+560);
+  vertex(x+10+controllore(c)/20,y+570);
+  vertex(x+10+controllore(c)/20,y+550);
+  vertex(x+55,y+540);
+  vertex(x+55,y+530);
+endShape(CLOSE);
+
+
+  
+      
+ //DOPPIALINEA a.............................................
+ noFill();
+beginShape();
+  
+  vertex(x-87,y+372);
+  vertex(x-85,y+520);
+  vertex(x-90,y+568);
+  vertex(x-50,y+574);
+  vertex(x-60,y+552);
+  vertex(x,y+562+controllore(c)/45);
+  vertex(x+60,y+552);
+  vertex(x+50,y+574);
+  vertex(x+90,y+568);
+  vertex(x+85,y+520);
+  vertex(x+87,y+372);
+ 
+endShape();
+
+ noStroke();
+    }}
+    
+
+   
+    
+    
+ //scelta della corporatura b........................................................................................................................
+
+if (c.length()>0){
+    if(c.charAt(p)=='2' || c.charAt(p)=='j' || c.charAt(p)=='J' || c.charAt(p)=='b' || c.charAt(p)=='B' || c.charAt(p)=='i' || c.charAt(p)=='I' || c.charAt(p)=='ì' || c.charAt(p)=='q' || c.charAt(p)=='Q'){
+ 
+      //CORPO b...........................................
+
+
+  beginShape();
+  vertex(x-72, y+375);
+  vertex(x-70, y+390);
+  vertex(x-55, y+390);
+  vertex(x-35, y+400);
+  vertex(x, y+395);
+  vertex(x+35, y+400);
+  vertex(x+55, y+390);
+  vertex(x+70, y+390);
+  vertex(x+72, y+375);
+  endShape();
+
+
+
+  //TESTA2 b.....................................................
+
+  beginShape();
+  vertex(x, y+540);
+  vertex(x-70, y+510);
+  vertex(x-60, y+450);
+  vertex(x-80, y+440);
+  vertex(x-75, y+410);
+  vertex(x-60, y+400);
+  vertex(x-35, y+410);
+  vertex(x, y+405);
+  vertex(x+35, y+410);
+  vertex(x+60, y+400);
+  vertex(x+75, y+410);
+  vertex(x+80, y+440);
+  vertex(x+60, y+450);
+  vertex(x+70, y+510);
+  endShape(CLOSE);
+
+
+  //RUGHE2 b..........................................................
+
+
+  //OCCHI2 b..........................................................
+  beginShape();
+  vertex(x-45, y+425);
+  vertex(x-45, y+460);
+  vertex(x-5, y+460);
+  vertex(x-5, y+430+controllore(c)/35);
+  endShape(CLOSE);
+
+  beginShape();
+  vertex(x+45, y+425);
+  vertex(x+45, y+460);
+  vertex(x+5, y+460);
+  vertex(x+5, y+430+controllore(c)/35);
+  endShape(CLOSE);
+
+  //PUPILLE2 b..........................................................
+  fill(col);
+  quad(x-25,y+445,x-25,y+455,x-15,y+455,x-15,y+445+c.length()-12);
+  quad(x+25,y+445,x+25,y+455,x+15,y+455,x+15,y+445+c.length()-12);
+
+  noFill();
+  stroke(col);
+  strokeWeight(5);
+
+
+  //BOCCA2 b..........................................................
+  beginShape();
+  vertex(x-45, y+475);
+  vertex(x-45, y+505);
+  vertex(x-20, y+515);
+  vertex(x+20, y+515);
+  vertex(x+45, y+505);
+  vertex(x+45, y+475);
+  endShape(CLOSE);
+  
+  //DENTI2 b..........................................................
+ 
+  
+  
+
+  
+
+  
+  
+   
+  
+  for (int i=0;i< c.length(); i++) {
+    if (c.charAt(i)=='a' || c.charAt(i)=='A'||c.charAt(i)=='n' || c.charAt(i)=='N'||c.charAt(i)=='i' || c.charAt(i)=='I')   {triangle(x-40,y+475,x-30,y+490,x-20,y+475);}
+    if (c.charAt(i)=='b' || c.charAt(i)=='B'||c.charAt(i)=='o' || c.charAt(i)=='O'||c.charAt(i)=='u' || c.charAt(i)=='U')   {triangle(x-20,y+475,x-10,y+490,x,y+475);}
+    if (c.charAt(i)=='c' || c.charAt(i)=='C'||c.charAt(i)=='p' || c.charAt(i)=='P'||c.charAt(i)=='j' || c.charAt(i)=='J')   {triangle(x,y+475,x+10,y+490,x+20,y+475);}
+    if (c.charAt(i)=='d' || c.charAt(i)=='D'||c.charAt(i)=='w' || c.charAt(i)=='W'||c.charAt(i)=='v' || c.charAt(i)=='V')   {triangle(x+20,y+475,x+30,y+490,x+40,y+475);}
+    if (c.charAt(i)=='e' || c.charAt(i)=='E'||c.charAt(i)=='q' || c.charAt(i)=='Q'||c.charAt(i)=='k' || c.charAt(i)=='K')   {triangle(x+16,y+515,x+8,y+502,x,y+515);}
+    if (c.charAt(i)=='f' || c.charAt(i)=='F'||c.charAt(i)=='r' || c.charAt(i)=='R'||c.charAt(i)=='z' || c.charAt(i)=='Z')   {triangle(x-16,y+515,x-8,y+502,x,y+515);}
+    if (c.charAt(i)=='g' || c.charAt(i)=='G'||c.charAt(i)=='s' || c.charAt(i)=='S'||c.charAt(i)=='l' || c.charAt(i)=='L'||c.charAt(i)=='y' || c.charAt(i)=='Y')   {triangle(x-22,y+512,x-30,y+498,x-38,y+507);}
+    if (c.charAt(i)=='h' || c.charAt(i)=='H'||c.charAt(i)=='t' || c.charAt(i)=='T'||c.charAt(i)=='x' || c.charAt(i)=='X'||c.charAt(i)=='m' || c.charAt(i)=='M')   {triangle(x+22,y+512,x+30,y+498,x+38,y+507);}
+   
+  }
+
+
+
+
+  //BRACCIA2 b...............................................
+  beginShape();
+  vertex(x-73, y+525);
+  vertex(x-76, y+560);
+  vertex(x-10+controllore(c)/20-20, y+570);
+  vertex(x-10+controllore(c)/20-20, y+550);
+  vertex(x-55, y+540);
+  vertex(x-55, y+530);
+  endShape(CLOSE);
+  
+  
+  beginShape();
+  vertex(x+73, y+525);
+  vertex(x+76, y+560);
+  vertex(x+10-controllore(c)/20+20, y+570);
+  vertex(x+10-controllore(c)/20+20, y+550);
+  vertex(x+55, y+540);
+  vertex(x+55, y+530);
+  endShape(CLOSE);
+  
+  
+
+  
+  //DOPPIALINEA b.............................................
+ noFill();
+beginShape();
+ 
+  vertex(x-87,y+372);
+  vertex(x-84,y+400);
+  vertex(x-88,y+420);
+  vertex(x-67,y+430);
+  vertex(x-85,y+520);
+  vertex(x-90,y+568);
+  vertex(x-50,y+574);
+  vertex(x-60,y+552);
+  vertex(x,y+562+controllore(c)/450);
+  vertex(x+60,y+552);
+  vertex(x+50,y+574);
+  vertex(x+90,y+568);
+  vertex(x+85,y+520);
+  vertex(x+67,y+430);
+  vertex(x+88,y+420);
+  vertex(x+84,y+400);
+  vertex(x+87,y+372);
+  
+endShape();
+
+}}
+
+
+ //scelta della corporatura c........................................................................................................................
+if (c.length()>0){
+    if(c.charAt(p)=='3' || c.charAt(p)=='k' || c.charAt(p)=='K' || c.charAt(p)=='c' || c.charAt(p)=='C' || c.charAt(p)=='ç' || c.charAt(p)=='l' || c.charAt(p)=='L' || c.charAt(p)=='r' || c.charAt(p)=='R'){
+
+     
+//CORPO............................................
+ 
+  beginShape();
+   vertex(x-72,y+375);
+  
+   vertex(x-65,y+385);
+   vertex(x-35,y+395);
+   vertex(x,y+390);
+   vertex(x+35,y+395);
+   vertex(x+65,y+385);
+   
+   vertex(x+72,y+375);
+   endShape();
+  
+   
+   
+  
+   
+  //TESTA2 c.....................................................
+
+beginShape(); 
+  vertex(x-60, y+480);
+  vertex(x-70, y+410);
+  vertex(x-75, y+395);
+  vertex(x-35, y+410);
+  vertex(x, y+405);
+  vertex(x+35, y+410);
+  vertex(x+75, y+395);
+  vertex(x+70, y+410);
+  vertex(x+60, y+480);
+endShape(CLOSE);
+
+ quad(x+65,y+480,x-65,y+480,x-65,y+500,x+65,y+500);
+
+
+  //RUGHE2 c..........................................................
+
+  for (int i=0;i< c.length(); i++) {
+    if (c.charAt(i)=='a' || c.charAt(i)=='A'||c.charAt(i)=='n' || c.charAt(i)=='N'||c.charAt(i)=='i' || c.charAt(i)=='I')   {  beginShape();
+  vertex(x-25, y+410);
+  vertex(x, y+425);
+  vertex(x+25, y+410);
+  endShape();}
+    if (c.charAt(i)=='b' || c.charAt(i)=='B'||c.charAt(i)=='o' || c.charAt(i)=='O'||c.charAt(i)=='u' || c.charAt(i)=='U')   {  line(x+15,y+455,x-15,y+455);}
+    if (c.charAt(i)=='c' || c.charAt(i)=='C'||c.charAt(i)=='p' || c.charAt(i)=='P'||c.charAt(i)=='j' || c.charAt(i)=='J')   {line(x+15,y+440,x-15,y+440);}
+    if (c.charAt(i)=='d' || c.charAt(i)=='D'||c.charAt(i)=='w' || c.charAt(i)=='W'||c.charAt(i)=='v' || c.charAt(i)=='V')   {
+  line(x+45+controllore(c)/30,y+440,x+62,y+450);
+  line(x-45-controllore(c)/30,y+440,x-62,y+450);}
+    if (c.charAt(i)=='e' || c.charAt(i)=='E'||c.charAt(i)=='q' || c.charAt(i)=='Q'||c.charAt(i)=='k' || c.charAt(i)=='K')   {line(x+45,y+455,x+62,y+465);
+  line(x-45,y+455,x-62,y+465);}
+    
+  }
+
+  
+  
+
+
+  //OCCHI2 c..........................................................
+  beginShape();
+  vertex(x-45-controllore(c)/30, y+425);
+  vertex(x-45, y+460);
+  vertex(x-15, y+460);
+  vertex(x-15,y+440);
+  vertex(x-25, y+430);
+  endShape(CLOSE);
+
+  beginShape();
+  vertex(x+45+controllore(c)/30, y+425);
+  vertex(x+45, y+460);
+  vertex(x+15, y+460);
+  vertex(x+15,y+440);
+  vertex(x+25, y+430);
+  endShape(CLOSE);
+
+  //PUPILLE c..........................................................
+  fill(col);
+  rect(x-35, y+440, 10, 10);
+  rect(x+25, y+440, 10, 10);
+  noFill();
+  stroke(col);
+  strokeWeight(5);
+
+
+  //BOCCA2 c..........................................................
+   quad(x+40,y+500,x-40,y+500,x-40,y+520,x+40,y+520);
+   triangle(x-60,y+500,x-40,y+500,x-40,y+530);
+   triangle(x+60,y+500,x+40,y+500,x+40,y+530);
+
+//DENTI 2 c........................................................
+for (int i=0;i< c.length(); i++) {
+   
+    if (c.charAt(i)=='f' || c.charAt(i)=='F'||c.charAt(i)=='r' || c.charAt(i)=='R'||c.charAt(i)=='z' || c.charAt(i)=='Z')   {line(x,y+500,x,y+520);}
+    if (c.charAt(i)=='g' || c.charAt(i)=='G'||c.charAt(i)=='s' || c.charAt(i)=='S'||c.charAt(i)=='l' || c.charAt(i)=='L'||c.charAt(i)=='y' || c.charAt(i)=='Y')   {line(x+20,y+500,x+20,y+520);}
+    if (c.charAt(i)=='h' || c.charAt(i)=='H'||c.charAt(i)=='t' || c.charAt(i)=='T'||c.charAt(i)=='x' || c.charAt(i)=='X'||c.charAt(i)=='m' || c.charAt(i)=='M')   {line(x-20,y+500,x-20,y+520);}
+   
+  }
+
+  
+
+
+  //BRACCIA2 c...............................................
+  beginShape();
+  vertex(x-55, y+530);
+  vertex(x-65, y+530);
+  vertex(x-65, y+570);
+  vertex(x-10-controllore(c)/23, y+570);
+  vertex(x-10-controllore(c)/23, y+550);
+  vertex(x-20-controllore(c)/23, y+550);
+  vertex(x-20-controllore(c)/23, y+545);
+  vertex(x-30-controllore(c)/23, y+540);
+  vertex(x-30-controllore(c)/23, y+550);
+  vertex(x-50, y+550);
+
+  endShape(CLOSE);
+
+  beginShape();
+  vertex(x+55, y+530);
+  vertex(x+65, y+530);
+  vertex(x+65, y+570);
+  vertex(x+10+controllore(c)/23, y+570);
+  vertex(x+10+controllore(c)/23, y+550);
+  vertex(x+20+controllore(c)/23, y+550);
+  vertex(x+20+controllore(c)/23, y+545);
+  vertex(x+30+controllore(c)/23, y+540);
+  vertex(x+30+controllore(c)/23, y+550);
+  vertex(x+50, y+550);
+ 
+  endShape(CLOSE);
+
+
+//DOPPIALINEA.............................................
+ noFill();
+beginShape();
+
+  vertex(x-87,y+372);
+  vertex(x-90,y+392);
+  vertex(x-85,y+410);
+  vertex(x-75,y+480);
+  vertex(x-75,y+580);
+  vertex(x-40,y+580);
+  vertex(x-50,y+560);
+  vertex(x,y+560);
+  vertex(x+50,y+560);
+  vertex(x+40,y+580);
+  vertex(x+75,y+580);
+  vertex(x+75,y+480);
+  vertex(x+85,y+410);
+  vertex(x+90,y+392);
+  vertex(x+87,y+372);
+  
+endShape();
+
+
+  noStroke(); }}    
+    
+ 
+
+
+
+  
+//SCELTA DELLA CORPORATURA d...........................................................................................................   
+if (c.length()>0){
+    if(c.charAt(p)=='4'|| c.charAt(p)=='w' || c.charAt(p)=='W' || c.charAt(p)=='d' || c.charAt(p)=='D' || c.charAt(p)=='s' || c.charAt(p)=='S'|| c.charAt(p)=='o' || c.charAt(p)=='O'   ){
+ 
+      
+//CORPO d............................................
+   
+ beginShape();
+   vertex(x-72,y+370);
+   vertex(x-77,y+410);
+   vertex(x-62,y+400);
+  
+   vertex(x,y+390);
+  
+   vertex(x+62,y+400);
+   vertex(x+77,y+410);
+   vertex(x+72,y+370);
+   endShape();
+   
+   
+
+   
+    
+//TESTA d.....................................................
+
+  beginShape();
+  vertex(x, y+540);
+  
+  vertex(x-75, y+520);
+  vertex(x-75,y+490);
+  vertex(x-60,y+490);
+  vertex(x-60,y+475);
+  vertex(x-80,y+475);
+  vertex(x-75,y+420);
+  vertex(x-60, y+410);
+  
+  vertex(x, y+400);
+  
+  vertex(x+60, y+410);
+  vertex(x+75,y+420);
+  vertex(x+80,y+475);
+  vertex(x+60,y+475);
+  vertex(x+60,y+490);
+  vertex(x+75,y+490);
+  
+  vertex(x+75, y+520);
+  endShape(CLOSE);
+
+
+//RUGHE d..........................................................
+  beginShape();
+    vertex(x-75,y+420);
+    vertex(x-15,y+430);
+    vertex(x-15,y+470+controllore(c)/23);
+    vertex(x+15,y+470+controllore(c)/23);
+    vertex(x+15,y+430);
+    vertex(x+75,y+420);
+  endShape();
+
+
+//OCCHI d..........................................................
+  beginShape();
+   vertex(x-15,y+460-controllore(c)/25);
+   vertex(x-77,y+460-controllore(c)/25);
+  endShape(CLOSE);
+
+  beginShape();
+  vertex(x+15,y+460-controllore(c)/25);
+   vertex(x+77,y+460-controllore(c)/25);
+  endShape(CLOSE);
+
+
+//PUPILLE d..........................................................
+  fill(col);
+  rect(x-45-controllore(c)/25, y+445-controllore(c)/25, 10, 10);
+  rect(x+35+controllore(c)/25, y+445-controllore(c)/25, 10, 10);
+  noFill();
+  stroke(col);
+  strokeWeight(5);
+
+
+
+//BOCCA d..........................................................
+  beginShape();
+  vertex(x-50, y+495);
+  vertex(x-50, y+515);
+  vertex(x,y+530);
+  vertex(x+50, y+515);
+  vertex(x+50, y+495);
+  endShape(CLOSE);
+
+//DENTI d......................................
+
+  for (int i=0;i< c.length(); i++) {
+    if (c.charAt(i)=='a' || c.charAt(i)=='A'||c.charAt(i)=='à' ||c.charAt(i)=='n' || c.charAt(i)=='N')   {triangle(x-47,y+495,x-27,y+495,x-37,y+505);}
+    if (c.charAt(i)=='b' || c.charAt(i)=='B'||c.charAt(i)=='o' || c.charAt(i)=='O'||c.charAt(i)=='ò' ||c.charAt(i)=='x' || c.charAt(i)=='X')   {triangle(x-27,y+495,x-7,y+495,x-17,y+510);}
+    if (c.charAt(i)=='c' || c.charAt(i)=='C'||c.charAt(i)=='ç' ||c.charAt(i)=='p' || c.charAt(i)=='P'||c.charAt(i)=='j' || c.charAt(i)=='J')   {triangle(x-7,y+495,x+7,y+495,x,y+505);}
+    if (c.charAt(i)=='d' || c.charAt(i)=='D'||c.charAt(i)=='w' || c.charAt(i)=='W'||c.charAt(i)=='v' || c.charAt(i)=='V')   {triangle(x+47,y+495,x+27,y+495,x+37,y+505);}
+    if (c.charAt(i)=='e' || c.charAt(i)=='E'||c.charAt(i)=='é' ||c.charAt(i)=='è' ||c.charAt(i)=='q' || c.charAt(i)=='Q'||c.charAt(i)=='k' || c.charAt(i)=='K')   {triangle(x+27,y+495,x+7,y+495,x+17,y+510);}
+    if (c.charAt(i)=='f' || c.charAt(i)=='F'||c.charAt(i)=='r' || c.charAt(i)=='R'||c.charAt(i)=='z' || c.charAt(i)=='Z')   {triangle(x-14,y+523,x-2,y+528,x-8,y+513);}
+    if (c.charAt(i)=='y' || c.charAt(i)=='Y'||c.charAt(i)=='m' || c.charAt(i)=='M'||c.charAt(i)=='i' || c.charAt(i)=='I'||c.charAt(i)=='ì')   {triangle(x+14,y+523,x+2,y+528,x+8,y+513);}
+    if (c.charAt(i)=='g' || c.charAt(i)=='G'||c.charAt(i)=='s' || c.charAt(i)=='S'||c.charAt(i)=='l' || c.charAt(i)=='L')   {triangle(x-23,y+522,x-30,y+510,x-37,y+517);}
+    if (c.charAt(i)=='h' || c.charAt(i)=='H'||c.charAt(i)=='t' || c.charAt(i)=='T'||c.charAt(i)=='u' || c.charAt(i)=='U'||c.charAt(i)=='ù')   {triangle(x+23,y+522,x+30,y+510,x+38,y+517);}
+   
+  }
+
+
+//BRACCIA2 d...............................................
+  beginShape();
+  vertex(x-73, y+535);
+  vertex(x-76, y+560);
+  vertex(x-10-controllore(c)/18, y+570);
+  vertex(x-10-controllore(c)/18, y+550);
+  vertex(x-55, y+540);
+  
+  endShape(CLOSE);
+
+  beginShape();
+  vertex(x+73, y+535);
+  vertex(x+76, y+560);
+  vertex(x+10+controllore(c)/18, y+570);
+  vertex(x+10+controllore(c)/18, y+550);
+  vertex(x+55, y+540);
+
+  endShape(CLOSE);
+
+
+
+
+  
+//DOPPIALINEA d.............................................
+ noFill();
+beginShape();
+  vertex(x-87,y+372);
+  
+  vertex(x-88,y+420);
+  vertex(x-95,y+478);
+  vertex(x-88,y+478);
+  vertex(x-88,y+487);
+  vertex(x-92,y+487);
+  vertex(x-85,y+520);
+  
+  vertex(x-90,y+568);
+  vertex(x-50,y+574);
+  vertex(x-60,y+552);
+  vertex(x,y+562+controllore(c)/45);
+  vertex(x+60,y+552);
+  vertex(x+50,y+574);
+  vertex(x+90,y+568);
+  
+  vertex(x+85,y+520);
+  vertex(x+92,y+487);
+  vertex(x+88,y+487);
+  vertex(x+88,y+478);
+  vertex(x+95,y+478);
+  vertex(x+88,y+420);
+  
+  vertex(x+87,y+372);
+endShape();
+
+    }}
+
+
+
+
+
+
+
+
+
+
+//SCELTA DELLA CORPORATURA e.............................................................................................................................
+ if (c.length()>0){
+    if(c.charAt(p)=='5' || c.charAt(p)=='x' || c.charAt(p)=='X' || c.charAt(p)=='e' || c.charAt(p)=='E' || c.charAt(p)=='è' || c.charAt(p)=='é'|| c.charAt(p)=='n' || c.charAt(p)=='N' || c.charAt(p)=='t' || c.charAt(p)=='T' || c.charAt(p)=='z' ||c.charAt(p)=='Z'){
+
+
+//CORPO e............................................
+  
+beginShape();
+   vertex(x-72,y+370);
+   vertex(x-75,y+402);
+   vertex(x-73,y+412);
+   vertex(x-64,y+400);
+   vertex(x,y+395);
+   vertex(x+64,y+400);
+   vertex(x+73,y+412);
+   vertex(x+75,y+402);
+   vertex(x+72,y+370);
+   endShape();
+   
+   
+
+  
+//TESTA e.....................................................
+
+  beginShape();
+  vertex(x, y+535);
+  vertex(x-10,y+540);
+  vertex(x-72, y+510);
+  vertex(x-76,y+480);
+  vertex(x-65,y+470);
+  vertex(x-72,y+425);
+  vertex(x-60, y+410);
+  vertex(x, y+405);
+  vertex(x+60, y+410);
+  vertex(x+72,y+425);
+  vertex(x+65,y+470);
+  vertex(x+76,y+480);
+  vertex(x+72, y+510);
+  vertex(x+10,y+540);
+  vertex(x,y+535);
+  endShape(CLOSE);
+
+//OCCHI e..........................................................
+
+  beginShape();
+  vertex(x, y+455);
+  vertex(x, y+435+controllore(c)/25);
+  vertex(x-30,y+425);
+  vertex(x-50,y+425);
+  vertex(x-45,y+465);
+  vertex(x-20,y+465);
+  endShape();
+
+  beginShape();
+  vertex(x, y+455);
+  vertex(x, y+435+controllore(c)/25);
+  vertex(x+30,y+425);
+  vertex(x+50,y+425);
+  vertex(x+45,y+465);
+  vertex(x+20,y+465);
+  endShape();
+
+//RUGHE e..........................................................
+ fill(back);
+ beginShape();
+  vertex(x-30,y+475);
+  vertex(x-20+controllore(c)/50,y+457);
+  vertex(x+20-controllore(c)/50,y+457);
+  vertex(x+30,y+475);
+endShape();
+noFill();
+
+
+//PUPILLE e..........................................................
+  fill(col);
+  beginShape();
+    vertex(x-20-controllore(c)/50,y+440);
+    vertex(x-30,y+440);
+    vertex(x-30,y+450);
+    vertex(x-20,y+450);
+  endShape(CLOSE);
+  
+  beginShape();
+    vertex(x+20+controllore(c)/50,y+440);
+    vertex(x+30,y+440);
+    vertex(x+30,y+450);
+    vertex(x+20,y+450);
+  endShape(CLOSE);
+
+ 
+  noFill();
+  stroke(col);
+  strokeWeight(5);
+
+
+//BOCCA e..........................................................
+  beginShape();
+  vertex(x-55, y+485);
+  vertex(x-55, y+505);
+  vertex(x-20, y+515);
+  vertex(x+20, y+515);
+  vertex(x+55, y+505);
+  vertex(x+55, y+485);
+  endShape(CLOSE);
+
+//DENTI e...........................................................
+  for (int i=0;i< c.length(); i++) {
+    if (c.charAt(i)=='a' || c.charAt(i)=='A'||c.charAt(i)=='à' ||c.charAt(i)=='n' || c.charAt(i)=='N')   {rect(x-45,y+485,10,10);}
+    if (c.charAt(i)=='b' || c.charAt(i)=='B'||c.charAt(i)=='o' || c.charAt(i)=='O'||c.charAt(i)=='ò' ||c.charAt(i)=='x' || c.charAt(i)=='X')   {rect(x-25,y+485,10,10);}
+    if (c.charAt(i)=='c' || c.charAt(i)=='C'||c.charAt(i)=='ç' ||c.charAt(i)=='p' || c.charAt(i)=='P'||c.charAt(i)=='j' || c.charAt(i)=='J')   {rect(x+45,y+485,-10,10);}
+    if (c.charAt(i)=='d' || c.charAt(i)=='D'||c.charAt(i)=='w' || c.charAt(i)=='W'||c.charAt(i)=='v' || c.charAt(i)=='V')   {rect(x+25,y+485,-10,10);}
+    if (c.charAt(i)=='e' || c.charAt(i)=='E'||c.charAt(i)=='é' ||c.charAt(i)=='è' ||c.charAt(i)=='q' || c.charAt(i)=='Q'||c.charAt(i)=='k' || c.charAt(i)=='K')   {rect(x-5,y+485,10,10);}
+    if (c.charAt(i)=='f' || c.charAt(i)=='F'||c.charAt(i)=='r' || c.charAt(i)=='R'||c.charAt(i)=='z' || c.charAt(i)=='Z')   {rect(x-15,y+515,10,-10);}
+    if (c.charAt(i)=='y' || c.charAt(i)=='Y'||c.charAt(i)=='m' || c.charAt(i)=='M'||c.charAt(i)=='i' || c.charAt(i)=='I'||c.charAt(i)=='ì')   {rect(x+15,y+515,-10,-10);}
+    if (c.charAt(i)=='g' || c.charAt(i)=='G'||c.charAt(i)=='s' || c.charAt(i)=='S'||c.charAt(i)=='l' || c.charAt(i)=='L')   {beginShape();
+                                                                                                                                vertex(x-35,y+510);
+                                                                                                                                vertex(x-35,y+505);
+                                                                                                                                vertex(x-25,y+505);
+                                                                                                                                vertex(x-25,y+513);
+                                                                                                                             endShape();}
+    if (c.charAt(i)=='h' || c.charAt(i)=='H'||c.charAt(i)=='t' || c.charAt(i)=='T'||c.charAt(i)=='u' || c.charAt(i)=='U'||c.charAt(i)=='ù')   {beginShape();
+                                                                                                                                vertex(x+35,y+510);
+                                                                                                                                vertex(x+35,y+505);
+                                                                                                                                vertex(x+25,y+505);
+                                                                                                                                vertex(x+25,y+513);
+                                                                                                                             endShape();}
+   
+  }
+
+//BRACCIA 2 e...............................................
+  beginShape();
+  vertex(x-73, y+525);
+  vertex(x-76, y+560);
+  vertex(x-30+controllore(c)/18, y+570);
+  vertex(x-30+controllore(c)/18, y+550);
+  vertex(x-55, y+540);
+  vertex(x-55, y+530);
+  endShape(CLOSE);
+
+  beginShape();
+  vertex(x+73, y+525);
+  vertex(x+76, y+560);
+  vertex(x+30-controllore(c)/18, y+570);
+  vertex(x+30-controllore(c)/18, y+550);
+  vertex(x+55, y+540);
+  vertex(x+55, y+530);
+  endShape(CLOSE);
+
+
+
+
+//DOPPIALINEA e.............................................
+beginShape();
+  vertex(x-87,y+372);
+  
+  vertex(x-90,y+400);
+  vertex(x-80,y+465);
+  vertex(x-90,y+477);
+  vertex(x-85,y+520);
+  
+  vertex(x-90,y+568);
+  vertex(x-50,y+574);
+  vertex(x-60,y+552);
+  vertex(x,y+568-controllore(c)/45);
+  vertex(x+60,y+552);
+  vertex(x+50,y+574);
+  vertex(x+90,y+568);
+  
+  vertex(x+85,y+520);
+  vertex(x+90, y+477);
+  vertex(x+80, y+465);
+  vertex(x+90,y+400);
+ 
+  vertex(x+87,y+372);
+endShape();
+
+
+    }}
+
+
+
+
+
+//SCELTA DELLA CORPORATURA f........................................................................................................
+if (c.length()>0){
+    if(c.charAt(p)=='6' || c.charAt(p)=='y' || c.charAt(p)=='m' || c.charAt(p)=='M' || c.charAt(p)=='Y' || c.charAt(p)=='f' || c.charAt(p)=='F' || c.charAt(p)=='ò' || c.charAt(p)=='u' || c.charAt(p)=='U' || c.charAt(p)=='ù' || c.charAt(p)=='v' || c.charAt(p)=='V'){
+
+
+
+//CORPO f............................................
+ beginShape();
+   vertex(x-75,y+370);
+   vertex(x-70,y+390);
+   vertex(x,y+395);
+   vertex(x+70,y+390);
+   vertex(x+75,y+370);
+ endShape();
+   
+
+
+
+   
+//TESTA f.....................................................
+beginShape();
+  vertex(x, y+540);
+  vertex(x-70, y+520);
+  vertex(x-75, y+510);
+  vertex(x-75, y+490);
+  vertex(x-70, y+480);
+  vertex(x-70, y+400);
+  vertex(x, y+405);
+  vertex(x+70, y+400);
+  vertex(x+70, y+480);
+  vertex(x+75, y+490);
+  vertex(x+75, y+510);
+  vertex(x+70, y+520);
+  endShape(CLOSE);
+
+
+//RUGHE f..........................................................
+ beginShape();
+   vertex(x-70,y+480-controllore(c)/40);
+   vertex(x-20,y+480-controllore(c)/40);
+   vertex(x-10,y+460-controllore(c)/40);
+   vertex(x,y+470-controllore(c)/50);
+   vertex(x+10,y+460-controllore(c)/40);
+   vertex(x+20,y+480-controllore(c)/40);
+   vertex(x+70,y+480-controllore(c)/40);
+  endShape();
+
+
+//OCCHI f..........................................................
+   beginShape();
+  vertex(x-60,y+480-controllore(c)/40);
+  vertex(x-50,y+420-controllore(c)/50);
+  vertex(x-10,y+440-controllore(c)/20);
+  vertex(x-10,y+460-controllore(c)/40);
+  endShape();
+  
+  beginShape();
+  vertex(x+60,y+480-controllore(c)/40);
+  vertex(x+50,y+420-controllore(c)/50);
+  vertex(x+10,y+440-controllore(c)/20);
+  vertex(x+10,y+460-controllore(c)/40);
+  endShape();
+
+ 
+ 
+//PUPILLE f..........................................................
+  fill(col);
+  rect(x-35, y+455-controllore(c)/50, 10, 10+controllore(c)/40);
+  rect(x+25, y+455-controllore(c)/50, 10, 10+controllore(c)/40);
+  noFill();
+  stroke(col);
+  strokeWeight(5);
+
+
+//BOCCA f..........................................................
+  beginShape();
+   vertex(x+60,y+515-controllore(c)/50);
+   vertex(x+60,y+495-controllore(c)/50);
+   vertex(x+45,y+500-controllore(c)/50);
+   vertex(x-45,y+500-controllore(c)/50);
+   vertex(x-60,y+495-controllore(c)/50);
+   vertex(x-60,y+515-controllore(c)/50);
+  endShape(CLOSE);
+
+//DENTI f...............................................................
+ for (int i=0;i< c.length(); i++) {
+    if (c.charAt(i)=='a' || c.charAt(i)=='A'||c.charAt(i)=='à' ||c.charAt(i)=='n' || c.charAt(i)=='N'||c.charAt(i)=='t' || c.charAt(i)=='T')   {triangle(x+8,y+515-controllore(c)/50,x+24,y+515-controllore(c)/50,x+16,y+505-controllore(c)/50);}
+    if (c.charAt(i)=='b' || c.charAt(i)=='B'||c.charAt(i)=='o' || c.charAt(i)=='O'||c.charAt(i)=='ò' ||c.charAt(i)=='x' || c.charAt(i)=='X')   {triangle(x-8,y+515-controllore(c)/50,x-24,y+515-controllore(c)/50,x-16,y+505-controllore(c)/50);}
+    if (c.charAt(i)=='c' || c.charAt(i)=='C'||c.charAt(i)=='ç' ||c.charAt(i)=='p' || c.charAt(i)=='P'||c.charAt(i)=='j' || c.charAt(i)=='J')   {triangle(x+8,y+500-controllore(c)/50,x-8,y+500-controllore(c)/50,x,y+510-controllore(c)/50);}
+    if (c.charAt(i)=='d' || c.charAt(i)=='D'||c.charAt(i)=='w' || c.charAt(i)=='W'||c.charAt(i)=='v' || c.charAt(i)=='V'||c.charAt(i)=='u' || c.charAt(i)=='U'||c.charAt(i)=='ù')   {triangle(x+24,y+500-controllore(c)/50,x+40,y+500-controllore(c)/50,x+32,y+510-controllore(c)/50);}
+    if (c.charAt(i)=='e' || c.charAt(i)=='E'||c.charAt(i)=='é' ||c.charAt(i)=='è' ||c.charAt(i)=='q' || c.charAt(i)=='Q'||c.charAt(i)=='k' || c.charAt(i)=='K')   {triangle(x-24,y+500-controllore(c)/50,x-40,y+500-controllore(c)/50,x-32,y+510-controllore(c)/50);}
+    if (c.charAt(i)=='f' || c.charAt(i)=='F'||c.charAt(i)=='r' || c.charAt(i)=='R'||c.charAt(i)=='z' || c.charAt(i)=='Z'||c.charAt(i)=='h' || c.charAt(i)=='H')   {triangle(x-40,y+515-controllore(c)/50,x-56,y+515-controllore(c)/50,x-48,y+505-controllore(c)/50);}
+    if (c.charAt(i)=='y' || c.charAt(i)=='Y'||c.charAt(i)=='m' || c.charAt(i)=='M'||c.charAt(i)=='i' || c.charAt(i)=='I'||c.charAt(i)=='ì')   {triangle(x+40,y+515-controllore(c)/50,x+56,y+515-controllore(c)/50,x+48,y+505-controllore(c)/50);}
+    if (c.charAt(i)=='g' || c.charAt(i)=='G'||c.charAt(i)=='s' || c.charAt(i)=='S'||c.charAt(i)=='l' || c.charAt(i)=='L')   {line(x-20,y+525,x+20,y+525);}
+
+   
+  }
+
+  //BRACCIA2 f...............................................
+  beginShape();
+  vertex(x-73, y+530);
+  vertex(x-76, y+560);
+  vertex(x-10-controllore(c)/45, y+570);
+  vertex(x-10-controllore(c)/45, y+550);
+  vertex(x-45, y+543);
+  vertex(x-45, y+535);
+  endShape(CLOSE);
+
+  beginShape();
+  vertex(x+73, y+530);
+  vertex(x+76, y+560);
+  vertex(x+10+controllore(c)/45, y+570);
+  vertex(x+10+controllore(c)/45, y+550);
+  vertex(x+45, y+543);
+  vertex(x+45, y+535);
+  endShape(CLOSE);
+
+  
+//DOPPIALINEA f.............................................
+beginShape();
+  vertex(x-87,y+372);
+  vertex(x-82,y+390);
+  vertex(x-82,y+475);
+  vertex(x-90,y+490);
+  vertex(x-90,y+510);
+  
+  vertex(x-85,y+520);
+  vertex(x-90,y+568);
+  vertex(x-50,y+574);
+  vertex(x-60,y+552);
+  vertex(x,y+562-controllore(c)/500);
+  vertex(x+60,y+552);
+  vertex(x+50,y+574);
+  vertex(x+90,y+568);
+  vertex(x+85,y+520);
+ 
+  vertex(x+90,y+510);
+  vertex(x+90,y+490);
+  vertex(x+82,y+475);
+  vertex(x+82,y+390);
+  vertex(x+87,y+372);
+ 
+endShape();
+
+    }}
+
+
+
+} //chiusura di tutta la funzione tupilaq
+
+
+
+
+
+
+
+
+//CREAZIONE SPAZIO INSERIMENTO DEL TESTO---------------------------------------------------------------------------------------------------------------------------------------------------
+void barraInserimento(int x,int y,int l,int a){
+  noStroke();  
+  fill(220);
+  rect(x,y,l,a);
+ 
+}
+//CREAZIONE CURSORE DEL TESTO LAMPEGGIANTE---------------------------------------------------------------------------------------------------------------------------------------------------
+String cursoreTesto(){
+
+   String on="|";
+   String off="";
+ if(millis()%(2*ritardo)<ritardo){ return on;}
+   else {return off;}
+   }
+
+
+
+//SELEZIONE DELLE CASELLE DI INSERIMENTO TESTO E ATTIVAZIONE CONFIRM ------------------------------------------------------------------------------------------------------------------------------------
+void mouseClicked(){
+  if (mouseX >= displayWidth/2+180 && mouseX <= displayWidth/2+180+500 && mouseY >=400 && mouseY <= 470){
+    selezione=0;}
+  if (mouseX >= displayWidth/2+180 && mouseX <= displayWidth/2+180+500 && mouseY >=510  && mouseY <= 580){
+    selezione=1;}
+  if (mouseX >= displayWidth/2+180 && mouseX <= displayWidth/2+180+100 && mouseY >=620 && mouseY <= 690){
+    selezione=2;}
+  if (mouseX >= displayWidth/2+330 && mouseX <= displayWidth/2+330+100 && mouseY >=620  && mouseY <= 690){
+    selezione=3;}
+  if (mouseX >= displayWidth/2+480 && mouseX <= displayWidth/2+480+200 && mouseY >=620  && mouseY <= 690){
+    selezione=4;}
+  
+  if (mouseX >= displayWidth/2+180 && mouseX <= displayWidth/2+180+293 && mouseY >=900  && mouseY <= 970){
+   confirm=1;}
+   
+  if (confirm==1 && mouseX >=displayWidth/2+500 && mouseX <= displayWidth/2+500+293 && mouseY >=885  && mouseY <=958){stampa=1;}
+  if (confirm==1 && mouseX >=displayWidth/2+500 && mouseX <= displayWidth/2+500+293 && mouseY >=800  && mouseY <=870){confirm=0;
+                                                                                                                      numeroCaso=int(random(50));}
+}
+
+
+
+
+// IMPLEMENTAZINE DELL'INSERIMENTO TESTO--------------------------------------------------------------------------------------------------------------------------------------------------
+void keyPressed() {
+
+  //nome.................
+  if (selezione==0 ){
+      if (keyCode == BACKSPACE) {
+              if (nome.length() > 0) {
+              nome = nome.substring(0, nome.length()-1);
+              }
+      } else if (keyCode == DELETE) {
+               nome = "";
+      } else if (keyCode == TAB || keyCode==ENTER|| keyCode==RETURN || keyCode==ESC){
+              if(nome.length()>0){
+                 nome = nome.substring(0, nome.length());
+              }
+        
+      }else if (nome.length()<20){
+          if(keyCode != SHIFT && keyCode != CONTROL && keyCode != ALT) {
+            nome = nome + key ;
+          }
+     }
+ }
+  //cognome.................
+ if (selezione==1){ 
+  if (keyCode == BACKSPACE) {
+    if (cognome.length() > 0) {
+      cognome = cognome.substring(0, cognome.length()-1);
+    }
+  } else if (keyCode == DELETE) {
+    cognome = "";
+  }  else if (keyCode == TAB || keyCode==ENTER|| keyCode==RETURN || keyCode==ESC){
+              if(cognome.length()>0){
+                 cognome = cognome.substring(0, cognome.length());
+                 
+              }
+              }else if(cognome.length()<20){
+                  if(keyCode != SHIFT && keyCode != CONTROL && keyCode != ALT) {
+                   cognome = cognome + key;
+                  }
+              }
+}
+  //dd...........................................
+ if (selezione==2){ 
+  if (keyCode == BACKSPACE) {
+    if (dd.length() > 0) {
+      dd = dd.substring(0, dd.length()-1);
+    }
+  } else if (keyCode == DELETE) {
+    dd = "";
+  }  else if (keyCode == TAB || keyCode==ENTER|| keyCode==RETURN || keyCode==ESC){
+              if(dd.length()>0){
+                 dd = dd.substring(0,dd.length());
+                 
+              }
+              }else if(dd.length()<2){
+                  if(keyCode != SHIFT && keyCode != CONTROL && keyCode != ALT) {
+                   dd= dd + key;
+                  }
+              }
+}
+  //mm...........................................
+ if (selezione==3){ 
+  if (keyCode == BACKSPACE) {
+    if (mm.length() > 0) {
+      mm = mm.substring(0, mm.length()-1);
+    }
+  } else if (keyCode == DELETE) {
+   mm= "";
+  }  else if (keyCode == TAB || keyCode==ENTER|| keyCode==RETURN || keyCode==ESC){
+              if(mm.length()>0){
+                 mm = mm.substring(0,mm.length());
+                 
+              }
+              }else if(mm.length()<2){
+                  if(keyCode != SHIFT && keyCode != CONTROL && keyCode != ALT) {
+                   mm = mm + key;
+                  }
+              }
+}
+  //yyyy...........................................
+ if (selezione==4){ 
+  if (keyCode == BACKSPACE) {
+    if (yyyy.length() > 0) {
+      yyyy = yyyy.substring(0, yyyy.length()-1);
+    }
+  } else if (keyCode == DELETE) {
+    yyyy = "";
+  }  else if (keyCode == TAB || keyCode==ENTER|| keyCode==RETURN || keyCode==ESC){
+              if(yyyy.length()>0){
+                 yyyy = yyyy.substring(0,yyyy.length());
+                 
+              }
+              }else if(yyyy.length()<4){
+                  if(keyCode != SHIFT && keyCode != CONTROL && keyCode != ALT) {
+                   yyyy = yyyy + key;
+                  }
+              }
+}
+
+
+
+
+//SPARIZIONE NOMI SEGNAPOSTO
+
+if (selezione==0){
+    if (nome.length()>0){
+        nomeSegnaposto="";}
+    else nomeSegnaposto="Name";}
+    
+if (selezione==1){
+    if (cognome.length()>0){
+        cognomeSegnaposto="";}
+    else cognomeSegnaposto="Surname";}
+    
+if (selezione==2){
+    if (dd.length()>0){
+        ddSegnaposto="";}
+    else ddSegnaposto="DD";}
+    
+if (selezione==3){
+    if (mm.length()>0){
+        mmSegnaposto="";}
+    else mmSegnaposto="MM";}
+    
+if (selezione==4){
+    if (yyyy.length()>0){
+        yyyySegnaposto="";}
+    else yyyySegnaposto="yyyy";}
+    
+}
+
+
+
+//CREAZIONE DEL CONTROLLORE DEI TESTI 
+int controllore(String a){
+  int c=0;
+  for (int i=0;i<a.length();i++){
+    if (a.charAt(i)=='a' || a.charAt(i)=='A'  || a.charAt(i)=='à') c=c+1;
+    if (a.charAt(i)=='b' || a.charAt(i)=='B')  c=c+2;
+    if (a.charAt(i)=='c' || a.charAt(i)=='C' || a.charAt(i)=='ç')  c=c+3;
+    if (a.charAt(i)=='d' || a.charAt(i)=='D')  c=c+4;
+    if (a.charAt(i)=='e' || a.charAt(i)=='E' || a.charAt(i)=='è'  || a.charAt(i)=='é')  c=c+5;
+    if (a.charAt(i)=='f' || a.charAt(i)=='F')  c=c+6;
+    if (a.charAt(i)=='g' || a.charAt(i)=='G')  c=c+7;
+    if (a.charAt(i)=='h' || a.charAt(i)=='H')  c=c+8;
+    if (a.charAt(i)=='i' || a.charAt(i)=='I' || a.charAt(i)=='ì')  c=c+9;
+    if (a.charAt(i)=='j' || a.charAt(i)=='J')  c=c+10;
+    if (a.charAt(i)=='k' || a.charAt(i)=='K')  c=c+11;
+    if (a.charAt(i)=='l' || a.charAt(i)=='L')  c=c+12;
+    if (a.charAt(i)=='m' || a.charAt(i)=='M')  c=c+13;
+    if (a.charAt(i)=='n' || a.charAt(i)=='N')  c=c+14;
+    if (a.charAt(i)=='o' || a.charAt(i)=='O' || a.charAt(i)=='ò')  c=c+15;
+    if (a.charAt(i)=='p' || a.charAt(i)=='P')  c=c+16;
+    if (a.charAt(i)=='q' || a.charAt(i)=='Q')  c=c+17;
+    if (a.charAt(i)=='r' || a.charAt(i)=='R')  c=c+18;
+    if (a.charAt(i)=='s' || a.charAt(i)=='S')  c=c+19;
+    if (a.charAt(i)=='t' || a.charAt(i)=='T')  c=c+20;
+    if (a.charAt(i)=='u' || a.charAt(i)=='U' || a.charAt(i)=='ù')  c=c+21;
+    if (a.charAt(i)=='v' || a.charAt(i)=='V')  c=c+22;
+    if (a.charAt(i)=='w' || a.charAt(i)=='W')  c=c+23;
+    if (a.charAt(i)=='x' || a.charAt(i)=='X')  c=c+24;
+    if (a.charAt(i)=='y' || a.charAt(i)=='Y')  c=c+25;
+    if (a.charAt(i)=='z' || a.charAt(i)=='Z')  c=c+26;
+    }
+  return c;  
+}
+
+
+//CREAZIONE FUNZIONE PASS
+void pass(String n,String s,String d,String m,String yy,int x,int y){ 
+  
+  fill(white);
+  rect(0,0,displayWidth,displayHeight);
+  noStroke();
+  fill(back);
+  rect(x-708,y,412,840);
+  tupilaq(x-502,y+20,255,nome,cognome);
+  fill(white);
+  textFont(hurme);
+  textSize(30);
+  textAlign(CENTER);
+  noStroke();
+  text("T E A M",x-502,y+660);
+  textSize(180);
+  text(numeroCaso,x-502,y+810);
+  noFill();
+  stroke(150);
+  strokeWeight(2);
+  rect(x-723,y-15,442,870);
+  
+  rect(x-221,y-15,442,870);
+  fill(back);
+  textFont(hurme);
+  textSize(20);
+  textAlign(CENTER);
+  noStroke();
+  text("I  N  U  I  T    T  R  A  I  L",x,y+35);
+  textSize(15);
+  text("PARTICIPATION PASS",x,y+80);
+  textSize(10);
+  fill(0);
+  text("NAME",x,y+125);
+  textFont(lubalin);
+  textSize(15);
+  text(n+" "+s,x,y+145);
+  textFont(hurme);
+  textSize(10);
+  fill(0);
+  text("DATE OF BIRTH",x,y+175);
+  textFont(lubalin);
+  textSize(15);
+  text(d+" - "+m+" - "+yy,x,y+195);
+  textFont(hurme);
+  textSize(15);
+  text("CONGRATULATION, MUSHER.",x,y+260);
+  textFont(lubalin);
+  textSize(13);
+  text("You have successfully been chosen as a",x,y+300);
+  text("candidate to the next Inuit Trail. ",x,y+317);
+  text("On the other side of this pass you’ll find your",x,y+334);
+  text("Team Identity number and Tupilaq. There is one ",x,y+351);
+  text("last step to prepare you for this experience: ",x,y+368);
+  text("the Qualification Race, a shorter track to test",x,y+385);
+  text("your abilities and gain familiarity with",x,y+402);
+  text("the pack of dogs you will choose. ",x,y+419);
+  text("It also will define the starting grid position.",x,y+436);
+  text("The Qualification Race will be set on",x,y+470);
+  fill(back);
+  textFont(lubalinBold);
+  textSize(16);
+  text("February, the 3rd ",x,y+525);
+  text("h.10.00 am, Tasiilaq",x,y+550);
+  noStroke();
+  fill(testo);
+  textFont(hurme);
+  textSize(13); 
+  text("IMPORTANT",x,y+610);
+  textFont(lubalin);
+  textSize(13); 
+  text("Preserve this pass.  ",x,y+635);
+  text("At your arrival at the airport, show it up with",x,y+652);
+  text("the other identity documents. ",x,y+669);
+  text("Our staff will welcome and will lead you and ",x,y+686);
+  text("the other candidates to your accomodation.",x,y+703);
+  textSize(8);
+  text("For more information visit: ",x,y+735);
+  text("www.aqqut.com/inuit trail",x,y+745);
+  imageMode(CENTER);
+  image(logo,x,y+805);
+   
+
+}
+
+
+
+//CREAZIONE SCHERMATA E INSERIMENTO FUNZIONI (SETUP/DRAW)----------------------------------------------------------------------------------------------------------------------------------
+void setup() {
+  size(displayWidth, displayHeight);
+  surface.setResizable(true);
+  logo=loadImage("logo.png");
+  }
+
+void draw() {
+  if(confirm==0){
+  surface.setSize(displayWidth,displayHeight);
+  stampa=0;
+  textAlign(LEFT);
+  background(white);
+  fill(back);
+  rect(30,30,displayWidth/2-60,displayHeight-60);
+  textFont(hurme);
+  noStroke();
+  text("T  U  P  I  L  A  Q",displayWidth/2+180,120);
+  text("G  E  N  E  R  A  T  O  R",displayWidth/2+180, 170);
+  rect(displayWidth/2+180,900,293,70);
+  textSize(18);
+  fill(255);
+  text("G E N E R A T E   P A S S",displayWidth/2+210,942);
+  fill(back);
+  textFont(lubalin);
+  textSize(27);
+  text("Insert name, surname and date of ",displayWidth/2+180,235);
+  text("birth in the fields below and ",displayWidth/2+180,265);
+  text("Tupilaq will be made up.",displayWidth/2+180,295);
+  fill(150);
+  textSize(24);
+  text("Click the button below to create the ",displayWidth/2+180,775);
+  text("Participation Pass with the Team Tupilaq ",displayWidth/2+180,805);
+  text("and the team number.",displayWidth/2+180,835);
+  
+  tupilaq(470, 200,255,nome,cognome);
+  noStroke();
+  barraInserimento(displayWidth/2+180,400,500,70);
+  barraInserimento(displayWidth/2+180,510,500,70);
+  barraInserimento(displayWidth/2+180,620,100,70);
+  barraInserimento(displayWidth/2+330,620,100,70);
+  barraInserimento(displayWidth/2+480,620,200,70);
+  
+  fill(150);
+  text(nomeSegnaposto,displayWidth/2+210,425,300,37);
+  text(cognomeSegnaposto,displayWidth/2+210,535,300,37);
+  text(ddSegnaposto,displayWidth/2+210,645,100,37);
+  text(mmSegnaposto,displayWidth/2+355,645,100,37);
+  text(yyyySegnaposto,displayWidth/2+540,645,100,37);
+  
+  fill(back);
+  if (selezione==0){
+  text(cognome,displayWidth/2+210,535,300,37);
+  text(nome+ cursoreTesto(),displayWidth/2+210,425,560,37);
+  text(dd,displayWidth/2+210,645,100,37);
+  text(mm,displayWidth/2+360,645,100,37);
+  text(yyyy,displayWidth/2+540,645,100,37);}
+  if (selezione==1){
+  text(nome,displayWidth/2+210,425,300,37);
+  text(cognome+cursoreTesto(),displayWidth/2+210,535,300,37);
+  text(dd,displayWidth/2+210,645,100,37);
+  text(mm,displayWidth/2+360,645,100,37);
+  text(yyyy,displayWidth/2+540,645,100,37);}
+  if (selezione==2){
+  text(nome,displayWidth/2+210,425,300,37);
+  text(cognome,displayWidth/2+210,535,300,37);
+  text(dd+cursoreTesto(),displayWidth/2+210,645,100,37);
+  text(mm,displayWidth/2+360,645,100,37);
+  text(yyyy,displayWidth/2+540,645,100,37);}
+  if (selezione==3){
+  text(nome,displayWidth/2+210,425,300,37);
+  text(cognome,displayWidth/2+210,535,300,37);
+  text(dd,displayWidth/2+210,645,100,37);
+  text(mm+cursoreTesto(),displayWidth/2+360,645,100,37);
+  text(yyyy,displayWidth/2+540,645,100,37);}
+  if (selezione==4){
+  text(nome,displayWidth/2+210,425,300,37);
+  text(cognome,displayWidth/2+210,535,300,37);
+  text(dd,displayWidth/2+210,645,100,37);
+  text(mm,displayWidth/2+360,645,100,37);
+  text(yyyy+cursoreTesto(),displayWidth/2+540,645,100,37);}
+  } 
+  
+  if (confirm==1){
+  pass(nome,cognome,dd,mm,yyyy,displayWidth/2+51,100);
+  fill(back);
+  rect(displayWidth/2+500,885,293,70);
+  textFont(hurme);
+  textAlign(CENTER);
+  textSize(18);
+  fill(white);
+  text("EXPORT PDF",displayWidth/2+646,928);
+  
+  fill(back);
+  rect(displayWidth/2+500,800,293,70);
+  textFont(hurme);
+  textAlign(CENTER);
+  textSize(18);
+  fill(white);
+  text("RETURN",displayWidth/2+646,843);
+     
+     
+  if (stampa==1){
+  surface.setSize(442,870);
+  beginRecord(PDF, "passFronte.pdf");
+  pass(nome,cognome,dd,mm,yyyy,723,15);
+  endRecord();
+  beginRecord(PDF, "passRetro.pdf");
+  pass(nome,cognome,dd,mm,yyyy,221,15);
+  endRecord();
+  stampa=0;
+  surface.setSize(displayWidth, displayHeight);
+  pass(nome,cognome,dd,mm,yyyy,displayWidth/2+251,100);
+    
+   }
+}
+ 
+  
+
+  
+  
+}
